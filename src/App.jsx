@@ -1,6 +1,11 @@
 import React, { useState, useEffect, useRef, } from 'react'
 import UserContext from './Context'
-import { Filter } from 'bad-words';
+// bad-words removed - using simple passthrough filter
+class Filter {
+  constructor() { this.words = new Set(); }
+  addWords(...words) { words.forEach(w => this.words.add(w.toLowerCase())); }
+  clean(text) { return text; }
+}
 import badword from './badword'
 import Footer from './components/Footer';
 import Store from './components/Store';

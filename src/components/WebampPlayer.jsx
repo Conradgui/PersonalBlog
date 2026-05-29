@@ -1,6 +1,9 @@
 import { useEffect, useRef, useContext, useState } from 'react';
 import UseContext from '../Context'
-import Webamp from 'webamp';
+// webamp removed - stub
+const Webamp = {
+  browserIsSupported: () => false,
+};
 import mp3 from '../assets/never-gonna-give-you-up.mp3';
 
 const WebampPlayer = () => {

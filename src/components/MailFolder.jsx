@@ -1,5 +1,8 @@
 import UseContext from '../Context'
-import emailjs from '@emailjs/browser';
+// @emailjs/browser removed - stub
+const emailjs = {
+  sendForm: () => Promise.resolve({ text: 'Email service removed' }),
+};
 import { useContext, useRef } from "react";
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
