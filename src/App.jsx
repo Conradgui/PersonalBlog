@@ -35,6 +35,7 @@ import AppIcons from './components/AppIcons';
 import BlogWindow from './components/BlogWindow';
 import ProjectWindow from './components/ProjectWindow';
 import ProfileWindow from './components/ProfileWindow';
+import ResumeWindow from './components/ResumeWindow';
 import { StyleHide, imageMapping,
   handleDoubleClickEnterLink,handleDoubleTapEnterMobile,
   handleDoubleClickiframe, handleDoubleTapiframeMobile,
@@ -283,6 +284,9 @@ function App() {
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [ProfileExpand, setProfileExpand] = useState(
+    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
+
+  const [ResumeWinExpand, setResumeWinExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [UserCreatedFolder, setUserCreatedFolder] = useState(() => {
@@ -1062,6 +1066,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     BlogExpand, setBlogExpand,
     ProjectsExpand, setProjectsExpand,
     ProfileExpand, setProfileExpand,
+    ResumeWinExpand, setResumeWinExpand,
     themeDragBar, setThemeDragBar,
     RunExpand, setRunExpand,
     reMountRun, setReMountRun,
@@ -1209,6 +1214,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
         <BlogWindow/>
         <ProjectWindow/>
         <ProfileWindow/>
+        <ResumeWindow/>
         <ResumeFolder/>
         <ProjectFolder/>
         <MailFolder/>
@@ -1534,6 +1540,7 @@ function ObjectState() {
     { name: 'Blog',        setter: setBlogExpand,       usestate: BlogExpand,       color: 'rgba(46, 133, 64, 0.85)', size: 'small' },
     { name: 'Projects',    setter: setProjectsExpand,   usestate: ProjectsExpand,   color: 'rgba(211, 117, 0, 0.85)', size: 'small' },
     { name: 'Profile',     setter: setProfileExpand,    usestate: ProfileExpand,    color: 'rgba(100, 130, 180, 0.85)', size: 'small' },
+    { name: 'ResumeWin',   setter: setResumeWinExpand,  usestate: ResumeWinExpand,  color: 'rgba(133, 165, 67, 0.85)', size: 'small' },
     
     // Add user folders dynamically with individual state management
     ...UserCreatedFolder.map(folder => ({

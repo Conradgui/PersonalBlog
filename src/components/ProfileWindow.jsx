@@ -65,7 +65,7 @@ function ProfileWindow() {
 
   // 打开简历窗口
   function handleOpenResume() {
-    handleShow('ResumeFile');
+    handleShow('ResumeWin');
   }
 
   return (

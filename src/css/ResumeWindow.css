@@ -1,0 +1,283 @@
+/* ---- ResumeWindow Win95 Style ---- */
+
+.resume_folder {
+    display: none;
+    position: fixed;
+    width: 520px;
+    height: 600px;
+    min-height: 360px;
+    background: #c5c4c4;
+    border: 2px solid white;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    outline: 1px solid white;
+    overflow: hidden;
+    resize: none;
+}
+
+/* ---- Title Bar ---- */
+
+.resume_folder .folder_dragbar {
+    display: flex;
+    position: relative;
+    height: 24px;
+    width: 100%;
+    margin-bottom: 1px;
+    align-items: center;
+    justify-content: space-between;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.resume_folder .resume_barname {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding-left: 5px;
+}
+
+.resume_folder .resume_barname span {
+    position: relative;
+    font-size: 13px;
+    color: white;
+    font-weight: bold;
+}
+
+.resume_folder .resume_barbtn {
+    display: flex;
+    position: relative;
+    margin-right: 4px;
+    gap: 2px;
+}
+
+.resume_barbtn div {
+    width: 17px;
+    height: 17px;
+    background: #c9c9c9;
+    font-weight: bold;
+    border: 1px solid black;
+    border-top-color: rgb(198, 198, 198);
+    border-left-color: rgb(198, 198, 198);
+    box-shadow: inset 1px 1px #ffffff, 1px 1px #000000dd;
+    cursor: default;
+}
+
+.resume_barbtn div:active {
+    border-top-color: black;
+    border-left-color: black;
+    border-bottom-color: white;
+    border-right-color: white;
+}
+
+.resume_barbtn .x {
+    position: relative;
+    text-align: center;
+    font-size: 18px;
+    bottom: 5px;
+}
+
+.resume_barbtn .dash {
+    position: relative;
+    width: 8px;
+    top: 11px;
+    margin: 0 auto;
+    border-bottom: 2px solid black;
+}
+
+/* ---- Toolbar ---- */
+
+.resume_toolbar {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 6px;
+    background: #c5c4c4;
+    border-bottom: 1px solid #87888f;
+}
+
+.resume_toolbar_btn {
+    font-family: 'MS Sans Serif 8pt bold', 'Segoe UI', Tahoma, sans-serif;
+    font-size: 11px;
+    padding: 2px 8px;
+    background: #c5c4c4;
+    border: 2px solid;
+    border-color: #f5f2f2 #1e1d1d #1e1d1d #f5f2f2;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.resume_toolbar_btn:active {
+    border-color: #1e1d1d #f5f2f2 #f5f2f2 #1e1d1d;
+}
+
+.resume_toolbar_btn:hover {
+    background: #d0d0d0;
+}
+
+.resume_toolbar_btn:disabled {
+    color: #87888f;
+    border-color: #f5f2f2 #1e1d1d #1e1d1d #f5f2f2;
+    cursor: default;
+    background: #c5c4c4;
+}
+
+.resume_toolbar_btn:disabled:active {
+    border-color: #f5f2f2 #1e1d1d #1e1d1d #f5f2f2;
+}
+
+.resume_page_info {
+    font-family: 'MS Sans Serif 8pt bold', 'Segoe UI', Tahoma, sans-serif;
+    font-size: 11px;
+    color: #000;
+    padding: 0 6px;
+    min-width: 50px;
+    text-align: center;
+}
+
+.resume_toolbar_sep {
+    width: 2px;
+    height: 18px;
+    margin: 0 4px;
+    border-left: 1px solid #87888f;
+    border-right: 1px solid #f5f2f2;
+}
+
+/* ---- Content Area ---- */
+
+.resume_content {
+    position: relative;
+    width: calc(100% - 8px);
+    height: calc(100% - 110px);
+    margin: 4px auto;
+    background: #808080;
+    border: 2px solid;
+    border-color: #87888f #f5f2f2 #f5f2f2 #87888f;
+    overflow: auto;
+    touch-action: none;
+}
+
+/* ---- Image Display ---- */
+
+.resume_image_container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10px;
+    min-height: 100%;
+}
+
+.resume_image_wrapper {
+    display: flex;
+    justify-content: center;
+    transition: width 0.2s ease;
+}
+
+.resume_image {
+    width: 100%;
+    height: auto;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+    border: 1px solid #333;
+    background: white;
+}
+
+/* ---- Status Bar ---- */
+
+.resume_status_bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 20px;
+    padding: 0 6px;
+    background: #c5c4c4;
+    border-top: 1px solid #f5f2f2;
+}
+
+.resume_status_bar p {
+    font-family: 'MS Sans Serif 8pt bold', 'Segoe UI', Tahoma, sans-serif;
+    font-size: 11px;
+    color: #333;
+}
+
+/* ---- Loading / Error / Empty ---- */
+
+.resume_loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    font-family: 'MS Sans Serif 8pt bold', 'Segoe UI', Tahoma, sans-serif;
+    font-size: 12px;
+    color: #fff;
+}
+
+.resume_error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-family: 'MS Sans Serif 8pt bold', 'Segoe UI', Tahoma, sans-serif;
+    font-size: 12px;
+    color: #cc0000;
+    background: #fff;
+}
+
+.resume_empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-family: 'MS Sans Serif 8pt bold', 'Segoe UI', Tahoma, sans-serif;
+    font-size: 12px;
+    color: #ccc;
+}
+
+/* ---- Scrollbar ---- */
+
+.resume_content::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+}
+
+.resume_content::-webkit-scrollbar-track {
+    background: #c0c0c0;
+    border: 1px solid #87888f;
+}
+
+.resume_content::-webkit-scrollbar-thumb {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #f5f2f2 #1e1d1d #1e1d1d #f5f2f2;
+}
+
+.resume_content::-webkit-scrollbar-thumb:hover {
+    background: #a0a0a0;
+}
+
+.resume_content::-webkit-scrollbar-button {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #f5f2f2 #1e1d1d #1e1d1d #f5f2f2;
+    height: 16px;
+    width: 16px;
+}
+
+/* ---- Mobile Responsive ---- */
+
+@media screen and (width <= 500px) {
+    .resume_folder {
+        width: 360px;
+        height: 480px;
+    }
+
+    .resume_toolbar {
+        flex-wrap: wrap;
+        gap: 3px;
+    }
+
+    .resume_toolbar_btn {
+        font-size: 10px;
+        padding: 2px 6px;
+    }
+}
