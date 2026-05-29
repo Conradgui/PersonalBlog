@@ -490,3 +490,140 @@ export const config = {
 14. 更新 GitHub Actions 工作流
 15. 测试和优化
 16. 部署到 GitHub Pages
+
+## 8. 内容管理指南
+
+> 本章节为后续内容维护提供便捷指引。所有内容更新均通过 GitHub Issues 完成，无需本地开发环境。
+
+### 8.1 添加博客文章
+
+1. 打开仓库的 GitHub Issues 页面
+2. 点击 "New Issue"
+3. 标题填写文章标题
+4. 正文使用 Markdown 编写（支持图片拖拽上传、代码块等）
+5. 添加 Label：`blog`，可选添加分类标签（如 `AI`、`前端`、`后端`）
+6. 提交后自动出现在博客窗口中（刷新页面即可）
+
+**文章排序**：按 Issue 创建时间倒序排列（最新的在前）
+
+**草稿功能**：使用 Label `draft` 标记草稿，前端会过滤掉带有 `draft` 标签的文章
+
+### 8.2 添加/更新项目
+
+1. 打开仓库的 GitHub Issues 页面
+2. 点击 "New Issue"
+3. 标题填写项目名称
+4. 正文格式：
+
+```markdown
+<!-- meta
+thumbnail: https://xxx.png
+tech: React, FastAPI, Neo4j
+demo: https://xxx.vercel.app
+github: https://github.com/xxx/xxx
+featured: true
+-->
+
+## 项目介绍
+
+项目详细描述...
+```
+
+5. 添加 Label：`project`，可选添加分类标签（如 `AI`、`前端`、`全栈`）
+6. 提交后自动出现在项目窗口中
+
+**元数据字段说明：**
+
+| 字段 | 必填 | 说明 |
+|------|------|------|
+| `thumbnail` | 推荐 | 项目缩略图 URL（可拖拽上传到 Issue 获取） |
+| `tech` | 推荐 | 技术栈，逗号分隔 |
+| `demo` | 可选 | 在线演示 URL |
+| `github` | 可选 | GitHub 仓库 URL |
+| `featured` | 可选 | 设为 `true` 标记为精选项目，优先展示 |
+
+**更新项目**：直接编辑对应的 Issue 即可，保存后刷新页面生效。
+
+### 8.3 更新个人信息
+
+1. 找到 Label 为 `profile` 的 Issue（通常只有一个）
+2. 编辑正文：
+
+```markdown
+<!-- meta
+name: 你的名字
+title: AI Product Manager
+location: Shanghai, China
+github: https://github.com/yourname
+linkedin: https://linkedin.com/in/yourname
+email: your@email.com
+-->
+
+## About Me
+
+个人简介...
+
+## Skills
+
+- Python, TypeScript, React
+- LangChain, LlamaIndex
+
+## 简历
+
+![简历第1页](https://user-content-assets.githubusercontent.com/xxx/1.png)
+![简历第2页](https://user-content-assets.githubusercontent.com/xxx/2.png)
+```
+
+**更新简历**：直接在 Issue 中替换简历图片即可（拖拽新图片上传，删除旧图片链接）。
+
+### 8.4 更新项目分类标签
+
+前端会自动从 Issues 的 Labels 中提取分类。添加新的 Label（如 `全栈`）后，项目窗口的分类筛选器会自动出现该选项。
+
+### 8.5 快速操作速查
+
+| 操作 | 方式 |
+|------|------|
+| 发布新文章 | 新建 Issue → Label `blog` |
+| 添加新项目 | 新建 Issue → Label `project` |
+| 更新简历图片 | 编辑 Profile Issue → 替换图片 |
+| 更新个人简介 | 编辑 Profile Issue → 修改文字 |
+| 隐藏文章 | 给 Issue 添加 `draft` Label 或关闭 Issue |
+| 删除项目 | 关闭对应的 Issue |
+| 修改分类 | 编辑 Issue 的 Labels |
+
+### 8.6 配置文件修改
+
+以下内容需要修改代码（但只需改一个文件 `src/data/config.js`）：
+
+```javascript
+export const config = {
+  github: {
+    owner: 'your-username',   // ← 改为你的 GitHub 用户名
+    repo: 'your-repo',        // ← 改为你的仓库名
+  },
+  blog: {
+    label: 'blog',            // ← 博客 Issue 的 Label
+    pageSize: 10,             // ← 每页显示文章数
+  },
+  project: {
+    label: 'project',         // ← 项目 Issue 的 Label
+  },
+  profile: {
+    label: 'profile',         // ← 个人信息 Issue 的 Label
+  }
+};
+```
+
+### 8.7 批量导入现有内容
+
+如果你已有大量项目和文章需要导入，可以：
+1. 使用 GitHub API 批量创建 Issues
+2. 或手动逐个创建（推荐，可同时完善格式）
+
+### 8.8 注意事项
+
+- **图片托管**：在 Issue 中拖拽上传的图片由 GitHub 自动托管，无需额外图床
+- **API 限制**：匿名请求限制 60 次/小时，足够正常使用；如需更高限额可配置 GitHub Token
+- **缓存**：前端使用 sessionStorage 缓存 API 响应，刷新页面即可获取最新内容
+- **SEO**：GitHub Issues 内容对搜索引擎友好，文章可被搜索引擎索引
