@@ -13,12 +13,11 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
         deletepermanently,
         iconBeingRightClicked,
         setUserCreatedFolder,
-        handleSetFocusItemTrue, setRunCatVideo 
+        handleSetFocusItemTrue,
 
     } = useContext(UseContext);
     const textResetStroage = "Warning: Resetting local storage will erase all your info. Are you sure you want to continue?"
     const textGithub = "Warning: You will be redirecting to another site, are you sure you want to continue?"
-    const textCat = "Warning: Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai Oiiai !"
     const textDelete = `Are you sure you want to permanantly delete ${iconBeingRightClicked.name}?`
 
     useEffect(() => {
@@ -47,16 +46,6 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
                 setContent(textGithub);
                 break;
 
-            case "webresume":
-                setYesNo(true);
-                setContent(textGithub);
-                break;
-
-            case "cat":
-                setYesNo(true);
-                setContent(textCat);
-                break;
-
             default:
                 setYesNo(false);
                 setContent(text);
@@ -78,16 +67,8 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
             case "resetstorage":
                 return removeLocalStorage();
 
-            case "github": 
-                return window.open('https://github.com/Yuteoctober/wins95Portfolio/', '_blank');
-
-            case "webresume": 
-                
-            return window.open('https://yuteoctober.github.io/resume_web/', '_blank');
-            
-            case "cat": 
-                setRunCatVideo(true)
-                return;
+            case "github":
+                return window.open('https://github.com/Conradgui/PersonalBlog', '_blank');
 
             default:
                 return runOpenFuction();

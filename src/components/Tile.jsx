@@ -24,7 +24,6 @@ import cube from '../assets/cube.gif';
 import agent from '../assets/bot.gif';
 import random from '../assets/random.png';
 import loading from '../assets/loading.gif';
-import painttile from '../assets/painttile.png';
 import projecttile from '../assets/projecttile.png';
 import runtile from '../assets/runtile.png';
 import bin from '../assets/delete.png';
@@ -190,13 +189,6 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundImage: `url(${runtile})`,
           backgroundPosition: '50% 58%',
           backgroundSize: '42px',
-          backgroundRepeat: 'no-repeat',
-        };
-      case 'Paint':
-        return {
-          backgroundImage: `url(${painttile})`,
-          backgroundPosition: '50% 56%',
-          backgroundSize: '40px',
           backgroundRepeat: 'no-repeat',
         };
       case 'Utility':

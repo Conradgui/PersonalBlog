@@ -5,7 +5,6 @@ import Draggable from 'react-draggable'
 import RunIcon from '../assets/run.png'
 import '../css/Run.css'
 import { BsCaretDownFill } from "react-icons/bs";
-import {imageMapping} from './function/AppFunctions' 
 
 
 
@@ -197,7 +196,7 @@ function Run() {
               <p>
                 Type the name of a program, folder, or document, and
                 <br />
-                Windwos will open it for you.
+                Windows will open it for you.
               </p>
           </div>
           <div className="run_middle_container">

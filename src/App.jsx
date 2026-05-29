@@ -80,8 +80,6 @@ function App() {
   const [backgroundImageUrl, setBackgroundImageUrl] = useState('');
   const [tileBG, setTileBG] = useState('#098684')
   const [tileScreen, setTileScreen] = useState(false)
-  const [chatBotActive, setChatBotActive] = useState(false);
-  const [runCatVideo, setRunCatVideo] = useState(false)
   const [sortedIcon, setSortedIcon] = useState([])
   const [sortIconTrigger, setSortIconTrigger] = useState(0)
   const [deleteIcon, setDeleteIcon] = useState(0)
@@ -136,7 +134,6 @@ function App() {
   const [themeDragBar, setThemeDragBar] = useState(() => localStorage.getItem('barcolor') || '#14045c')
   const [login, setLogin] = useState(false) 
   const [windowsShutDownAnimation, setWindowsShutDownAnimation] = useState(false)
-  const [detectMouse, setDetectMouse] = useState(false)
   const [shutdownWindow, setShutdownWindow] = useState(false)
   const ClearTOdonttouch = useRef(null);
   const ClearTOSongfunction = useRef(null);
@@ -153,6 +150,7 @@ function App() {
   const [clippyTouched, setClippyTouched] = useState(false)
   const [randomClippyPopup, setRandomClippyPopup] = useState(false)
   const [clippyIndex, setClippyIndex] = useState(0)
+  const [showChart, setShowChart] = useState(false);
   const [showClippy, setShowClippy] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
   const [startActive, setStartActive] = useState(false);
@@ -186,7 +184,7 @@ function App() {
   const [desktopIcon, setDesktopIcon] = useState(() => {
   const localItems = localStorage.getItem('icons');
 
-  const deleteIcon = ['Cat', 'AiAgent', 'Paint', '3dObject', 'Nft', 'Note', 'ResumeFile', 'Github', 'WebResume', 'AiAgent', 'Fortune', 'PixelPic', 'ResetStorage', 'Patch', 'TaskManager', 'Picture', 'Utility', 'Hard Disk (C:)', 'Hard Disk (D:)', 'CD-ROM', '001', '002', '003', '004', '005', '006', '007', '008', '009', '010', '011'];
+  const deleteIcon = ['AiAgent', '3dObject', 'Nft', 'Note', 'ResumeFile', 'Github', 'Fortune', 'PixelPic', 'ResetStorage', 'Patch', 'TaskManager', 'Picture', 'Utility', 'Hard Disk (C:)', 'Hard Disk (D:)', 'CD-ROM', '001', '002', '003', '004', '005', '006', '007', '008', '009', '010', '011'];
 
   const filteredItems = iconInfo.filter(item => !deleteIcon.includes(item.name));
 
@@ -422,9 +420,6 @@ useEffect(() => {
 useEffect(() => { // touch support device === true
   iconFocusIcon('') // make icon focus goes false
 
-  const htmlElement = document.documentElement; //check if user is in frontend
-  htmlElement.addEventListener('mouseenter', handleMouseSeen);
-
   const onTouchStartSupported = 'ontouchstart' in document.documentElement;
   setIsTouchDevice(onTouchStartSupported);
 
@@ -440,7 +435,6 @@ useEffect(() => { // touch support device === true
   document.addEventListener('keydown', handleKeyPress);
   return () => {
       document.removeEventListener('keydown', handleKeyPress);
-      htmlElement.removeEventListener('mouseenter', handleMouseSeen);
   };
 
 }, []);
@@ -733,9 +727,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     backgroundImageUrl, setBackgroundImageUrl,
     tileBG, setTileBG,
     tileScreen, setTileScreen,
-    chatBotActive, setChatBotActive,
     PatchExpand, setPatchExpand,
-    runCatVideo, setRunCatVideo,
     UtilityRef,
     sortedIcon, setSortedIcon,
     sortIconTrigger, setSortIconTrigger,
@@ -766,6 +758,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     currentFolder, setCurrentFolder,
     MyComputerExpand, setMyComputerExpand,
     btcShow, setBtcShow,
+    showChart, setShowChart,
     projectStartBar, setProjectStartBar,
     resumeStartBar, setResumejectStartBar,
     calenderToggle, setCalenderToggle,
@@ -848,9 +841,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
 
   // show login page
   if(login) {
-    if(!login) {
-      setLoading(true)
-    }
     return(
       <UserContext.Provider value={contextValue}>
         <Login/>
@@ -889,15 +879,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
       </div>
     )
   }
-
-  // // show login page
-  // if(tileScreen ) {
-  //   return(
-  //     <UserContext.Provider value={contextValue}>
-  //       <WindowsDragLogin/>
-  //     </UserContext.Provider>
-  //   )
-  // }
 
   return (
     <>
@@ -987,44 +968,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
       </UserContext.Provider>
     </>
   )
-  
-//   function deletepermanently(deleteName) { // move to void folder
-//   const droppedIcon = desktopIcon.find(icon => icon.name === deleteName);
-//   if (droppedIcon) { 
-//     setDesktopIcon(prevIcons => {
-      
-//       const updatedIcons = prevIcons.map(icon => 
-//         icon.name === droppedIcon.name 
-//           ? {...icon, folderId: 'Void'} 
-//           : icon
-//       );
-      
-//       setKey(prev => prev + 1);
-//       localStorage.setItem('icons', JSON.stringify([...updatedIcons]));
-//       return [...updatedIcons];
-//     });
-//   }
-//   setDeleteIcon(prev => prev + 1)
-//   setBinRestoreArr(prev => {
-//     const newBinArr = prev.filter(icon => icon.name !== deleteName);
-//     localStorage.setItem('restoreArray', JSON.stringify(newBinArr));
-//     return newBinArr;
-//   });
-//   const findUserCreatedFolder = UserCreatedFolder.find(
-//     icon => icon.name === deleteName
-//   );
-
-//   if (findUserCreatedFolder) {
-//     const updatedFolders = UserCreatedFolder.filter(
-//       folder => folder.name !== findUserCreatedFolder.name
-//     );
-
-//     setUserCreatedFolder(updatedFolders);
-//     localStorage.setItem("userFolders", JSON.stringify(updatedFolders));
-//   }
-
-//   refBeingClicked.current = null;
-// }
 
   function deletepermanently(deleteName) { // delete from desktopIcon
     setItemIsBeingDeleted(deleteName)
@@ -1174,11 +1117,6 @@ function handleDrop(e, name, target, oldFolderID) {
       if(!RunExpand.show && !ErrorPopup) {
         setReMountRun(prev => prev + 1)
       }
-    }
-
-
-    function handleMouseSeen() { //check if user is on the frontend
-      setDetectMouse(true)
     }
 
 

@@ -104,7 +104,7 @@ function EmptyFolder({state, setState, refState, folderName, photoMode, paintMod
 
   useEffect(() => { // force re-render, ref can be tracked
     setKeyRef(prev => prev + 1)
-  },[useState.show])
+  },[state.show])
 
   return (
     <Draggable

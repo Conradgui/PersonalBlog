@@ -100,19 +100,19 @@ function OpenProject() {
       return'https://fullstack-stickynotes.netlify.app/'
         
 
-    case 'AiAgent': 
-        return 'https://yuteoctober.github.io/AI_chatbot/';
+    case 'AiAgent':
+        return 'https://example.com/AI_chatbot/';
 
-    case '3dObject': 
-        return 'https://yuteoctober.github.io/3d_book/'; 
+    case '3dObject':
+        return 'https://example.com/3d_book/';
         
 
-    case 'Fortune': 
-        return 'https://yuteoctober.github.io/week_fortune/';
+    case 'Fortune':
+        return 'https://example.com/week_fortune/';
 
 
-    case 'PixelPic': 
-        return 'https://yuteoctober.github.io/Pixel_pic/'; 
+    case 'PixelPic':
+        return 'https://example.com/Pixel_pic/';
 
     case 'IE': 
         return'https://www.google.com/search?igu=1';

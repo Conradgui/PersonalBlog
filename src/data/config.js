@@ -2,8 +2,8 @@
 // 修改这里的 owner 和 repo 即可连接到你的 GitHub Issues
 export const config = {
   github: {
-    owner: 'your-username',   // ← 替换为你的 GitHub 用户名
-    repo: 'your-repo',        // ← 替换为你的仓库名
+    owner: 'Conradgui',
+    repo: 'PersonalBlog',
   },
   blog: {
     label: 'blog',

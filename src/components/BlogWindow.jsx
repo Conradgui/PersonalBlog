@@ -1,5 +1,5 @@
 import UseContext from '../Context'
-import { useContext, useState, useCallback, useMemo } from "react";
+import { useContext, useState, useMemo } from "react";
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import { useIssueList, useParsedIssue } from '../hooks/useGitHubIssues.js';

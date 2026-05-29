@@ -1,395 +1,271 @@
-# 🖥️ Windows 95 个人博客 & 作品集
+# 🖥️ Windows 95 Personal Blog & Portfolio
 
-> 基于 React 的 Windows 95 风格个人博客和作品集，使用 GitHub Issues 作为 CMS
+> A retro Windows 95-themed personal blog and portfolio, powered by React and GitHub Issues as CMS
 
-![Windows 95 Portfolio](https://img.shields.io/badge/React-18.2-61DAFB?style=flat-square&logo=react)
+![React](https://img.shields.io/badge/React-18.2-61DAFB?style=flat-square&logo=react)
 ![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=flat-square&logo=vite)
+![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-222222?style=flat-square&logo=github)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
-**在线演示：** <https://your-username.github.io/your-repo/>
+**Live Demo:** <https://conradgui.github.io/PersonalBlog/>
 
 ---
 
-## ✨ 特性
+## Overview
 
-### 🆕 核心功能
+This project transforms the classic Windows 95 desktop experience into a fully functional personal blog and portfolio. All content is managed through GitHub Issues — no backend, no database, no CMS fees. Just write a GitHub Issue, add a label, and it appears on your site.
 
-- **📝 博客系统** - 通过 GitHub Issues 管理博客文章，支持分类筛选和搜索
-- **📂 项目展示** - 卡片式项目列表，支持缩略图、技术栈、Demo/GitHub 链接
-- **👤 个人信息** - 从 GitHub Issues 读取个人简介、技能、社交链接
-- **📄 简历查看** - 图片式简历查看器，支持翻页和缩放
+### Why This Approach?
 
-### 🎮 保留的经典功能
-
-- **🪟 窗口管理** - 拖拽、缩放、最大化、最小化、关闭
-- **🎯 桌面图标** - 双击打开，拖拽排列
-- **📋 任务栏** - 开始按钮、窗口标签、系统托盘
-- **🖱️ 右键菜单** - 排序、新建文件夹、属性、设置
-- **💣 扫雷游戏** - 经典的扫雷实现
-- **₿ BTC 追踪** - 实时比特币价格（Coinbase WebSocket）
-- **🌤️ 天气组件** - 基于地理位置的天气显示
-- **📰 新闻应用** - 新闻阅读器
-- **📎 Clippy 助手** - 回形针动画助手
-- **🔐 登录页面** - Win95 风格登录界面
-- **🔄 关机动画** - 关机/重启/注销动画
+- **Zero maintenance cost** — Static site hosted on GitHub Pages, content managed via GitHub Issues
+- **Instant content updates** — Write an Issue, refresh the page, done
+- **Developer-friendly** — Markdown-native, version-controlled, collaborative
+- **Unique presentation** — Windows 95 nostalgia meets modern web development
 
 ---
 
-## 🚀 快速开始
+## Features
 
-### 1. 克隆项目
+### Content Management (via GitHub Issues)
+
+| Feature    | Description                                                           |
+| :--------- | :-------------------------------------------------------------------- |
+| 📝 Blog    | Articles rendered from GitHub Issues with category filtering and search |
+| 📂 Portfolio | Project cards with thumbnails, tech stack, demo links, and iframe preview |
+| 👤 Profile | Personal info, skills, social links, and resume images                |
+| 🌐 Browser | Built-in IE-style web browser that can browse the internet            |
+
+### Desktop Experience
+
+| Feature        | Description                                           |
+| :------------- | :---------------------------------------------------- |
+| 🪟 Window System | Draggable, resizable, minimizable windows with Win95 styling |
+| 📋 Taskbar     | Start menu, window tabs, system tray with clock       |
+| 🖱️ Context Menu | Right-click for sorting, properties, and settings     |
+| ₿ BTC Tracker  | Real-time Bitcoin price via Coinbase WebSocket        |
+| 🌤️ Weather     | Location-based weather display                        |
+| 🎨 Themes      | Customizable wallpaper and title bar colors           |
+| 🔐 Login Screen | Win95-style login with animations                     |
+| 📎 Clippy      | Animated assistant with motivational messages         |
+
+---
+
+## Quick Start
 
 ```bash
-git clone https://github.com/your-username/your-repo.git
-cd your-repo
-```
+# 1. Clone
+git clone https://github.com/Conradgui/PersonalBlog.git
+cd PersonalBlog
 
-### 2. 安装依赖
-
-```bash
+# 2. Install
 npm install
-```
 
-### 3. 配置 GitHub 仓库
+# 3. Configure
+# Edit src/data/config.js with your GitHub username and repo
 
-编辑 `src/data/config.js`：
-
-```javascript
-export const config = {
-  github: {
-    owner: 'your-username',   // ← 替换为你的 GitHub 用户名
-    repo: 'your-repo',        // ← 替换为你的仓库名
-  },
-  // ...
-};
-```
-
-### 4. 启动开发服务器
-
-```bash
+# 4. Run
 npm run dev
 ```
 
-访问 `http://localhost:5173/` 查看效果。
-
-### 5. 构建生产版本
-
-```bash
-npm run build
-```
+Then open `http://localhost:5173/PersonalBlog/`
 
 ---
 
-## 📝 内容管理
+## Content Management
 
-所有内容通过 GitHub Issues 管理，**无需本地开发环境**即可更新内容。
+All content is managed through **GitHub Issues** — no coding required.
 
-### 第一步：创建 Labels
+### Setup
 
-在仓库的 **Settings > Labels** 中创建以下标签：
+Create these labels in your repository:
 
-| Label    | 颜色 | 用途       |
-| -------- | ---- | ---------- |
-| `blog`   | 蓝色 | 博客文章   |
-| `project` | 绿色 | 项目作品   |
-| `profile` | 紫色 | 个人信息   |
-| `draft`  | 灰色 | 草稿（可选）|
+| Label    | Color | Purpose       |
+| :------- | :---- | :------------ |
+| `blog`   | Blue  | Blog articles |
+| `project` | Green | Portfolio projects |
+| `profile` | Purple | Personal information |
 
-### 第二步：创建个人信息 Issue
+### Blog Post
 
-创建一个 Issue，Label 为 `profile`：
+Create an Issue with label `blog`:
+
+```markdown
+# Article Title
+
+Content in full Markdown...
+
+## Code blocks, images, tables — all supported
+```
+
+### Portfolio Project
+
+Create an Issue with label `project`:
 
 ```markdown
 <!-- meta
-name: 你的名字
-title: AI Product Manager
-location: Shanghai, China
-github: https://github.com/yourname
-linkedin: https://linkedin.com/in/yourname
-email: your@email.com
-avatar: https://your-avatar-url.png
--->
-
-## About Me
-
-在这里写你的个人简介...
-
-## Skills
-
-- Python, TypeScript, React
-- FastAPI, LangChain, Neo4j
-- PostgreSQL, Docker
-
-## 简历
-
-![简历第1页](https://your-resume-image-1.png)
-![简历第2页](https://your-resume-image-2.png)
-```
-
-### 第三步：添加博客文章
-
-创建 Issue，Label 为 `blog`：
-
-```markdown
-# 文章标题
-
-文章正文内容，支持完整的 Markdown 语法...
-
-## 代码块
-
-​```python
-def hello():
-    print("Hello World!")
-​```
-
-## 图片
-
-![图片描述](https://your-image-url.png)
-```
-
-**可选分类标签：** 添加额外的 Label（如 `AI`、`前端`、`后端`）来分类文章。
-
-### 第四步：添加项目
-
-创建 Issue，Label 为 `project`：
-
-```markdown
-<!-- meta
-thumbnail: https://project-thumbnail.png
+thumbnail: https://screenshot.png
 tech: React, FastAPI, Neo4j
-demo: https://your-demo.vercel.app
-github: https://github.com/yourname/your-project
+demo: https://demo.vercel.app
+github: https://github.com/you/project
 featured: true
 -->
 
-## 项目介绍
-
-项目详细描述...
-
-## 技术栈
-
-- React 18
-- FastAPI
-- Neo4j
-
-## 截图
-
-![项目截图](https://screenshot.png)
+## Project description...
 ```
 
-### 快速操作速查
+### Personal Profile
 
-| 操作         | 方式                                   |
-| ------------ | -------------------------------------- |
-| 发布新文章   | 新建 Issue → Label `blog`              |
-| 添加新项目   | 新建 Issue → Label `project`           |
-| 更新简历图片 | 编辑 Profile Issue → 替换图片          |
-| 更新个人简介 | 编辑 Profile Issue → 修改文字          |
-| 隐藏文章     | 给 Issue 添加 `draft` Label 或关闭 Issue |
-| 删除项目     | 关闭对应的 Issue                       |
-| 修改分类     | 编辑 Issue 的 Labels                   |
+Create one Issue with label `profile`:
 
----
+```markdown
+<!-- meta
+name: Your Name
+title: AI Product Manager
+location: Shanghai, China
+github: https://github.com/you
+linkedin: https://linkedin.com/in/you
+-->
 
-## 🚀 部署
+## About Me
+Your bio...
 
-### GitHub Pages（推荐）
+## Skills
+- Python, TypeScript, React
 
-1. **Fork 或克隆本仓库**
-
-2. **修改配置**
-   - 编辑 `src/data/config.js`，填入你的 GitHub 用户名和仓库名
-   - 编辑 `vite.config.js`，修改 `base` 为你的仓库名
-
-3. **推送代码**
-
-   ```bash
-   git push origin main
-   ```
-
-4. **启用 GitHub Pages**
-   - 进入仓库 Settings > Pages
-   - Source 选择 `GitHub Actions`
-
-5. **等待部署完成**
-   - GitHub Actions 会自动构建和部署
-   - 访问 `https://your-username.github.io/your-repo/`
-
-### Vercel
-
-1. 连接 GitHub 仓库到 Vercel
-2. 设置构建命令：`npm run build`
-3. 设置输出目录：`dist`
-4. 部署
-
-### Netlify
-
-1. 连接 GitHub 仓库到 Netlify
-2. 设置构建命令：`npm run build`
-3. 设置发布目录：`dist`
-4. 部署
+## Resume
+![Resume](https://image-url.png)
+```
 
 ---
 
-## 📁 项目结构
+## Deployment
+
+### GitHub Pages (Recommended)
+
+1. Update `src/data/config.js` with your repo info
+2. Update `vite.config.js` → `base: '/your-repo-name/'`
+3. Push to `main` branch
+4. Enable GitHub Pages in repo Settings → Pages → Source: GitHub Actions
+5. Done! Your site deploys automatically on every push
+
+### Other Platforms
+
+| Platform | Build Command | Output Dir |
+| :------- | :------------ | :--------- |
+| Vercel   | `npm run build` | `dist`   |
+| Netlify  | `npm run build` | `dist`   |
+
+---
+
+## Project Architecture
 
 ```text
-├── public/                    # 静态资源
-├── src/
-│   ├── assets/               # 图片、字体、音频
-│   ├── components/           # React 组件
-│   │   ├── BlogWindow.jsx    # 博客窗口
-│   │   ├── ProjectWindow.jsx # 项目展示窗口
-│   │   ├── ProfileWindow.jsx # 个人信息窗口
-│   │   ├── ResumeWindow.jsx  # 简历查看窗口
-│   │   ├── MarkdownRenderer.jsx # Markdown 渲染器
-│   │   ├── Footer.jsx        # 任务栏
-│   │   ├── Dragdrop.jsx      # 桌面图标
-│   │   ├── MineSweeper.jsx   # 扫雷游戏
-│   │   └── ...               # 其他组件
-│   ├── css/                  # 样式文件
-│   ├── data/
-│   │   └── config.js         # 配置文件
-│   ├── hooks/
-│   │   └── useGitHubIssues.js # GitHub Issues Hook
-│   ├── services/
-│   │   └── github.js         # GitHub API 服务
-│   ├── App.jsx               # 主应用组件
-│   ├── App.css               # 应用样式
-│   ├── Context.js            # React Context
-│   ├── icon.json             # 桌面图标配置
-│   ├── index.css             # 全局样式
-│   └── main.jsx              # 入口文件
-├── docs/                     # 文档
-│   └── superpowers/
-│       ├── specs/            # 设计规格
-│       └── plans/            # 实现计划
-├── index.html                # HTML 入口
-├── package.json              # 依赖配置
-├── vite.config.js            # Vite 配置
-└── .github/
-    └── workflows/
-        └── deploy.yml        # GitHub Actions 部署
+src/
+├── components/
+│   ├── BlogWindow.jsx        # Blog list + article detail
+│   ├── ProjectWindow.jsx     # Project cards + iframe preview
+│   ├── ProfileWindow.jsx     # Personal info from GitHub Issues
+│   ├── ResumeWindow.jsx      # Resume image viewer
+│   ├── MarkdownRenderer.jsx  # Win95-styled Markdown rendering
+│   ├── Footer.jsx            # Taskbar with Start menu
+│   ├── Dragdrop.jsx          # Desktop icon system
+│   ├── OpenProject.jsx       # IE-style web browser
+│   ├── BTC.jsx               # Bitcoin price tracker
+│   └── ...                   # Other UI components
+├── services/
+│   └── github.js             # GitHub API layer with caching
+├── hooks/
+│   └── useGitHubIssues.js    # Data fetching hooks
+├── data/
+│   └── config.js             # Repository configuration
+├── css/                      # Win95-styled CSS files
+└── App.jsx                   # Main application
+```
+
+### Data Flow
+
+```text
+GitHub Issues (CMS)
+    ↓ GitHub REST API
+github.js (Service Layer)
+    ↓ useGitHubIssues.js (Hooks)
+Window Components (UI)
+    ↓ React Context
+App.jsx (State Management)
 ```
 
 ---
 
-## 🛠️ 自定义
+## Tech Stack
 
-### 修改桌面图标
+| Category   | Technology               |
+| :--------- | :----------------------- |
+| Frontend   | React 18.2, Vite 5       |
+| Styling    | Pure CSS (Win95 theme)   |
+| Data       | GitHub Issues API        |
+| Drag & Drop | react-draggable         |
+| Animation  | framer-motion            |
+| Markdown   | react-markdown           |
+| Deployment | GitHub Pages + Actions   |
 
-编辑 `src/icon.json`：
+---
+
+## Customization
+
+### Change Desktop Icons
+
+Edit `src/icon.json`:
 
 ```json
 {
-  "name": "图标名称",
-  "pic": "图标图片名",
+  "name": "IconName",
+  "pic": "ImageName",
   "folderId": "Desktop",
-  "size": 4,
   "type": ".exe",
   "x": 1,
   "y": 1
 }
 ```
 
-### 修改窗口样式
-
-编辑对应的 CSS 文件，例如 `src/css/BlogWindow.css`。
-
-Win95 风格的关键 CSS 变量：
+### Win95 CSS Reference
 
 ```css
-/* 窗口背景 */
-background: #c5c4c4;
-
-/* 凸起边框 */
+/* Raised border (buttons, window frame) */
 border: 2px solid;
 border-color: #f5f2f2 #1e1d1d #1e1d1d #f5f2f2;
 
-/* 凹陷边框 */
+/* Sunken border (input fields, content area) */
 border: 2px solid;
 border-color: #1e1d1d #f5f2f2 #f5f2f2 #1e1d1d;
 
-/* 标题栏 */
-background: #000080;  /* 蓝色 */
+/* Window background */
+background: #c5c4c4;
+
+/* Title bar */
+background: #000080;
 color: white;
 ```
 
-### 修改主题颜色
-
-编辑 `src/App.jsx` 中的 `themeDragBar` 状态：
-
-```javascript
-const [themeDragBar, setThemeDragBar] = useState(
-  () => localStorage.getItem('barcolor') || '#14045c'
-);
-```
-
 ---
 
-## 📦 技术栈
-
-| 类别         | 技术                        |
-| ------------ | --------------------------- |
-| **前端框架** | React 18.2                  |
-| **构建工具** | Vite 5                      |
-| **样式**     | 纯 CSS（Win95 风格）        |
-| **拖拽**     | react-draggable             |
-| **动画**     | framer-motion               |
-| **Markdown** | react-markdown              |
-| **HTTP**     | axios                       |
-| **数据源**   | GitHub Issues API           |
-| **部署**     | GitHub Pages + GitHub Actions |
-
----
-
-## 🔧 开发命令
+## Development
 
 ```bash
-# 启动开发服务器
-npm run dev
-
-# 构建生产版本
-npm run build
-
-# 预览生产版本
-npm run preview
-
-# 代码检查
-npm run lint
+npm run dev      # Start dev server
+npm run build    # Build for production
+npm run preview  # Preview production build
+npm run lint     # Run linter
 ```
 
 ---
 
-## 📄 许可证
+## License
 
-MIT License
+MIT License — feel free to use this as a template for your own portfolio.
 
----
+## Acknowledgments
 
-## 🙏 致谢
-
-- [Windows 95 Icons](https://oldwindowsicons.tumblr.com/tagged/windows%2095) - Windows 95 图标资源
-- [React](https://reactjs.org/) - 前端框架
-- [Vite](https://vitejs.dev/) - 构建工具
-- [GitHub Issues](https://docs.github.com/en/issues) - 内容管理系统
-
----
-
-## 📞 联系方式
-
-- **GitHub:** [your-username](https://github.com/your-username)
-- **LinkedIn:** [your-linkedin](https://linkedin.com/in/your-linkedin)
-- **Email:** <your@email.com>
-
----
-
-## 🤝 贡献
-
-欢迎提交 Issue 和 Pull Request！
-
-1. Fork 本仓库
-2. 创建你的特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交你的修改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 打开一个 Pull Request
+- [Windows 95 Icons](https://oldwindowsicons.tumblr.com/) — Icon resources
+- [React](https://reactjs.org/) — UI framework
+- [Vite](https://vitejs.dev/) — Build tool
+- Original project by [Yuteoctober](https://github.com/Yuteoctober/wins95Portfolio) — Base architecture
