@@ -34,6 +34,7 @@ import TaskManager from './components/TaskManager';
 import AppIcons from './components/AppIcons';
 import BlogWindow from './components/BlogWindow';
 import ProjectWindow from './components/ProjectWindow';
+import ProfileWindow from './components/ProfileWindow';
 import { StyleHide, imageMapping,
   handleDoubleClickEnterLink,handleDoubleTapEnterMobile,
   handleDoubleClickiframe, handleDoubleTapiframeMobile,
@@ -279,6 +280,9 @@ function App() {
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [ProjectsExpand, setProjectsExpand] = useState(
+    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
+
+  const [ProfileExpand, setProfileExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [UserCreatedFolder, setUserCreatedFolder] = useState(() => {
@@ -1057,6 +1061,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     BgSettingExpand, setBgSettingExpand,
     BlogExpand, setBlogExpand,
     ProjectsExpand, setProjectsExpand,
+    ProfileExpand, setProfileExpand,
     themeDragBar, setThemeDragBar,
     RunExpand, setRunExpand,
     reMountRun, setReMountRun,
@@ -1203,6 +1208,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
         <MyBioFolder/>
         <BlogWindow/>
         <ProjectWindow/>
+        <ProfileWindow/>
         <ResumeFolder/>
         <ProjectFolder/>
         <MailFolder/>
@@ -1527,6 +1533,7 @@ function ObjectState() {
     { name: 'Bitcoin',     setter: setBtcShow,          usestate: btcShow,          color: 'rgba(132, 140, 207, 0.85)', size: 'small' },
     { name: 'Blog',        setter: setBlogExpand,       usestate: BlogExpand,       color: 'rgba(46, 133, 64, 0.85)', size: 'small' },
     { name: 'Projects',    setter: setProjectsExpand,   usestate: ProjectsExpand,   color: 'rgba(211, 117, 0, 0.85)', size: 'small' },
+    { name: 'Profile',     setter: setProfileExpand,    usestate: ProfileExpand,    color: 'rgba(100, 130, 180, 0.85)', size: 'small' },
     
     // Add user folders dynamically with individual state management
     ...UserCreatedFolder.map(folder => ({
