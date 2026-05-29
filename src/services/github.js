@@ -55,9 +55,10 @@ function setCache(key, data) {
  * @param {string} label - Issue 标签名
  * @param {number} [page=1] - 页码
  * @param {number} [perPage=10] - 每页数量
+ * @param {AbortSignal} [signal] - AbortController 信号，用于取消请求
  * @returns {Promise<Array>} Issues 数组
  */
-export async function fetchIssues(label, page = 1, perPage = 10) {
+export async function fetchIssues(label, page = 1, perPage = 10, signal) {
   const cacheKey = `issues:${label}:${page}:${perPage}`;
   const cached = getFromCache(cacheKey);
   if (cached) return cached;
@@ -70,6 +71,7 @@ export async function fetchIssues(label, page = 1, perPage = 10) {
         page,
         per_page: perPage,
       },
+      signal,
     });
 
     const data = response.data;
@@ -84,15 +86,16 @@ export async function fetchIssues(label, page = 1, perPage = 10) {
 /**
  * 获取单个 Issue
  * @param {number} number - Issue 编号
+ * @param {AbortSignal} [signal] - AbortController 信号，用于取消请求
  * @returns {Promise<Object>} Issue 对象
  */
-export async function fetchIssue(number) {
+export async function fetchIssue(number, signal) {
   const cacheKey = `issue:${number}`;
   const cached = getFromCache(cacheKey);
   if (cached) return cached;
 
   try {
-    const response = await api.get(`/issues/${number}`);
+    const response = await api.get(`/issues/${number}`, { signal });
     const data = response.data;
     setCache(cacheKey, data);
     return data;

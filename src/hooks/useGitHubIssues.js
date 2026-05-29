@@ -74,7 +74,7 @@ export function useIssueList(label, options = {}) {
       }
 
       try {
-        const data = await fetchIssues(label, pageNum, pageSize);
+        const data = await fetchIssues(label, pageNum, pageSize, abortControllerRef.current.signal);
 
         if (!isMountedRef.current) return;
 
@@ -173,7 +173,7 @@ export function useIssueDetail(issueNumber) {
     setError(null);
 
     try {
-      const data = await fetchIssue(issueNumber);
+      const data = await fetchIssue(issueNumber, abortControllerRef.current.signal);
 
       if (!isMountedRef.current) return;
 
