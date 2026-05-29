@@ -19,7 +19,6 @@ import EmptyFolder from './components/EmptyFolder';
 import ErrorBtn from './components/ErrorBtn';
 import RightClickWindows from './components/RightClickWindows';
 import loadingSpin from './assets/loading.gif'
-import Patch from './components/Patch';
 import WindowsDragLogin from './components/WindowsDragLogin';
 import TaskManager from './components/TaskManager';
 import AppIcons from './components/AppIcons';
@@ -184,7 +183,7 @@ function App() {
   const [desktopIcon, setDesktopIcon] = useState(() => {
   const localItems = localStorage.getItem('icons');
 
-  const deleteIcon = ['AiAgent', '3dObject', 'Nft', 'Note', 'ResumeFile', 'Github', 'Fortune', 'PixelPic', 'ResetStorage', 'Patch', 'TaskManager', 'Picture', 'Utility', 'Hard Disk (C:)', 'Hard Disk (D:)', 'CD-ROM', '001', '002', '003', '004', '005', '006', '007', '008', '009', '010', '011'];
+  const deleteIcon = ['AiAgent', '3dObject', 'Nft', 'Note', 'ResumeFile', 'Github', 'Fortune', 'PixelPic', 'ResetStorage', 'TaskManager', 'Picture', 'Utility', 'Hard Disk (C:)', 'Hard Disk (D:)', 'CD-ROM', '001', '002', '003', '004', '005', '006', '007', '008', '009', '010', '011'];
 
   const filteredItems = iconInfo.filter(item => !deleteIcon.includes(item.name));
 
@@ -207,9 +206,6 @@ function App() {
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [UtilityExpand, setUtilityExpand] = useState(
-    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
-  
-  const [PatchExpand, setPatchExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
   
   const [TaskManagerExpand, setTaskManagerExpand] = useState(
@@ -284,11 +280,6 @@ function App() {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 1500);
-
-    // Show Patch notes after loading
-    setTimeout(() => {
-      handleShow('Patch');
-    }, 2500);
 
     return () => clearTimeout(timer);
   },[])
@@ -727,7 +718,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     backgroundImageUrl, setBackgroundImageUrl,
     tileBG, setTileBG,
     tileScreen, setTileScreen,
-    PatchExpand, setPatchExpand,
     UtilityRef,
     sortedIcon, setSortedIcon,
     sortIconTrigger, setSortIconTrigger,
@@ -947,7 +937,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
         />
         <AppIcons/>
         <TaskManager/>
-        <Patch/>
         <RightClickWindows/>
         <Notification/>
         <Shutdown/>
@@ -1138,7 +1127,6 @@ function ObjectState() {
     { name: 'Settings',    setter: setBgSettingExpand,  usestate: BgSettingExpand,  color: 'rgba(140, 140, 140, 0.85)', size: 'small' },
     { name: 'Run',         setter: setRunExpand,        usestate: RunExpand,        color: 'rgba(86, 114, 122, 0.85)', size: 'small' },
     { name: 'MyComputer',  setter: setMyComputerExpand, usestate: MyComputerExpand, color: 'rgba(31, 122, 206, 0.85)', size: 'small' },
-    { name: 'Patch',       setter: setPatchExpand,      usestate: PatchExpand,      color: 'rgba(86, 114, 122, 0.85)', size: 'small' },
     { name: 'Photo',       setter: setPhotoOpenExpand,  usestate: photoOpenExpand,  color: 'rgba(0, 120, 93, 0.85)', size: 'small' },
     { name: 'RecycleBin',  setter: setBinExpand,        usestate: BinExpand,        color: 'rgba(64, 135, 66, 0.85)', size: 'small' },
     { name: 'Utility',     setter: setUtilityExpand,    usestate: UtilityExpand,    color: 'rgba(116, 85, 54, 0.85)', size: 'small' },
@@ -1284,7 +1272,7 @@ function handleShow(name) {
     }
   });
 
-  PatchExpand ? null : setTileScreen(false);
+  setTileScreen(false);
   
   if(tap.includes(name)) return;
   setStartActive(false);

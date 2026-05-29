@@ -25,7 +25,6 @@ import binEmp from '../../assets/bin2.png'
 import reset from '../../assets/reset.png'
 import github from '../../assets/github.png'
 import aiagent from '../../assets/ai_robot.png'
-import patch from '../../assets/patch.png'
 import ThreedObject from '../../assets/3dObject.png'
 import Fortune from '../../assets/fortune.png'
 import run from '../../assets/run.png'
@@ -129,10 +128,6 @@ export function imageMapping (name, type) {
 
     case "AiAgent":
       return aiagent;
-
-    case "patch":
-    case "Patch":
-      return patch;
 
     case "3dObject":
       return ThreedObject;

@@ -29,7 +29,6 @@ import runtile from '../assets/runtile.png';
 import bin from '../assets/delete.png';
 import uti from '../assets/uti.png';
 import pencil from '../assets/pencil.png';
-import check from '../assets/check.png';
 import laptop from '../assets/laptop.png';
 import resumef from '../assets/resumef.png';
 import openfolder from '../assets/open-folder.png';
@@ -203,13 +202,6 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundImage: `url(${pencil})`,
           backgroundPosition: '50% 54%',
           backgroundSize: '36px',
-          backgroundRepeat: 'no-repeat',
-        };
-      case 'Patch':
-        return {
-          backgroundImage: `url(${check})`,
-          backgroundPosition: '50% 58%',
-          backgroundSize: '38px',
           backgroundRepeat: 'no-repeat',
         };
       case 'RecycleBin':
