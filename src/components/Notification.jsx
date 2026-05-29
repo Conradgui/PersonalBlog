@@ -2,7 +2,6 @@ import { useEffect, useState, useContext } from 'react';
 import '../css/Notification.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import UseContext from '../Context';
-import msnIcon from '../assets/msn.png';
 import icon_wins95 from '../assets/95icon.png';
 import { imageMapping } from './function/AppFunctions';
 
@@ -52,19 +51,12 @@ function Notification() {
     // Safe image fallback
     let img;
     try {
-      img = type === 'msn' ? msnIcon : imageMapping(safeName) || icon_wins95;
+      img = imageMapping(safeName) || icon_wins95;
     } catch {
       img = icon_wins95;
     }
 
     switch (type) {
-      case 'msn':
-        return {
-          img,
-          text1: 'You got a new message!',
-          text2: '',
-          function: 'MSN',
-        };
       case 'appInstalling':
         return {
           img,

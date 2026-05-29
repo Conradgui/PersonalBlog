@@ -1,12 +1,9 @@
 import MyComputer from '../../assets/pc.png'
 import About from '../../assets/ipng.png'
 import Resume from '../../assets/folder.png'
-import Mail from '../../assets/mail.png'
 import Project from '../../assets/regFolder.png'
-import Winamp from '../../assets/winampIcon.png'
 import resumefile from '../../assets/resume.png'
 import MineSweeper from '../../assets/minesweepericon.png'
-import MSN from '../../assets/msn.png'
 import ie from '../../assets/ie.png'
 import settings from '../../assets/setting.png'
 import file from '../../assets/file4download.png'
@@ -39,7 +36,7 @@ import backarrow from '../../assets/backarrow.png'
 import tile from '../../assets/tile.png'
 import taskmanager from '../../assets/taskmanager.png'
 import notepad from '../../assets/notepad.png'
-import store from '../../assets/store.png'
+import news from '../../assets/news.png'
 import layer from '../../assets/layer.png'
 
 
@@ -74,7 +71,7 @@ export function StyleHide(index, tap, ObjectState) {
 
 
 // Mapping image function
-export function imageMapping (name, type) { 
+export function imageMapping (name, type) {
   switch(name) {
 
     case 'About':
@@ -88,20 +85,21 @@ export function imageMapping (name, type) {
     case 'Resume':
       return Resume;
 
-    case 'Mail':
-      return Mail;
+    case 'Blog':
+      return notepad;
 
+    case 'Projects':
     case 'Project':
     case 'Picture':
     case 'Utility':
       return Project;
 
-      case 'Nft':
-      case 'Note':
-        return file;
-      
-    case 'Winamp':
-      return Winamp;
+    case 'Nft':
+    case 'Note':
+      return file;
+
+    case 'News':
+      return news;
 
     case 'ResumeFile':
       return resumefile;
@@ -109,9 +107,6 @@ export function imageMapping (name, type) {
     case 'MineSweeper':
     case 'Mine Sweeper':
       return MineSweeper;
-
-    case 'MSN':
-      return MSN;
 
     case 'Internet':
     case 'WebResume':
@@ -136,7 +131,7 @@ export function imageMapping (name, type) {
     case 'Photo':
     case 'Jpeg':
       return jpeg;
-    
+
     case 'bin':
     case 'RecycleBin':
     case 'recyclebin':
@@ -192,10 +187,6 @@ export function imageMapping (name, type) {
     case "notepad":
       return notepad
 
-    case "Store":
-    case "store":
-      return store
-
     case "PixelPic":
     case "pixelpic":
       return layer
@@ -203,6 +194,12 @@ export function imageMapping (name, type) {
     case "IE":
     case "ie":
       return ie;
+
+    case 'Profile':
+      return About; // 使用 About 图标
+
+    case 'ResumeWin':
+      return Resume; // 使用 Resume 图标
 
     default:
       if(type === 'folder') {

@@ -40,7 +40,6 @@ export default function Footer() {
         appIconToggle, setAppIconToggle,
         deleteTap,
         tileScreen, setTileScreen,
-        onlineUser,
         newsPopup, setNewsPopup,
         btcShow, setBtcShow,
         isTouchDevice,
@@ -51,7 +50,6 @@ export default function Footer() {
         iconTextSize,
         iconScreenSize, setIconScreenSize,
         iconSize, setIconSize,
-        chatDown,
         remountRunPosition,
         startActive, setStartActive,
         time, setTime,
@@ -59,7 +57,6 @@ export default function Footer() {
         imageMapping,
         handleShow,
         StyleHide,
-        setWinampExpand,
         showClippy, setShowClippy,
         clippyIndex, setClippyIndex,
         randomClippyPopup, setRandomClippyPopup,
@@ -337,15 +334,6 @@ export default function Footer() {
             item.setter(prev => ({...prev, focusItem: true}));
             if(item.usestate.hide) {
                 item.setter(prev => ({...prev, hide: false}));
-                if(lowerCaseName === 'winamp') {
-                    const webampElement = document.querySelector('#webamp');
-                    if (webampElement) {
-                        webampElement.style.opacity = 1;
-                        webampElement.style.pointerEvents = 'auto';
-                        webampElement.style.touchAction = 'auto'
-                        setWinampExpand(prev => ({...prev, hide: false}));
-                    }
-                }
             }
           }
 
@@ -416,7 +404,7 @@ export default function Footer() {
         if(clippyTouched) return clippyPhrase.interruption[0].phrase;
         if(clippySendemail) return clippySuggest[0]
         if(clippySong) return clippySuggest[2]
-        if(clippyUsername) return chatDown? clippySuggest[4] : onlineUser < 2 ? clippySuggest[5] : clippySuggest[3]
+        if(clippyUsername) return clippySuggest[3]
 
         return clippyPhrase.inspiration[clippyIndex].phrase // return default from phrase
     }

@@ -1,20 +1,14 @@
 import React, { useState, useEffect, useRef, } from 'react'
 import UserContext from './Context'
-import { Filter } from 'bad-words';
-import badword from './badword'
 import Footer from './components/Footer';
-import Store from './components/Store';
 import Dragdrop from './components/Dragdrop';
 import MyBioFolder from './components/MyBioFolder';
 import MyComputer from './components/MyComputer';
 import ResumeFolder from './components/ResumeFolder';
 import ProjectFolder from './components/ProjectFolder';
-import MailFolder from './components/MailFolder';
-import WebampPlayer from './components/WinampPlayer';
 import ResumeFile from './components/ResumeFile';
 import Shutdown from './components/Shutdown';
 import MineSweeper from './components/MineSweeper'
-import MsnFolder from './components/MsnFolder';
 import iconInfo from './icon.json'
 import Login from './components/Login';
 import OpenProject from './components/OpenProject';
@@ -26,14 +20,16 @@ import BTC from './components/BTC';
 import EmptyFolder from './components/EmptyFolder';
 import ErrorBtn from './components/ErrorBtn';
 import RightClickWindows from './components/RightClickWindows';
-import axios from 'axios';
 import loadingSpin from './assets/loading.gif'
 import NewsApp from './components/NewsApp'
-import SpinningCat from './components/SpinningCat';
 import Patch from './components/Patch';
 import WindowsDragLogin from './components/WindowsDragLogin';
 import TaskManager from './components/TaskManager';
 import AppIcons from './components/AppIcons';
+import BlogWindow from './components/BlogWindow';
+import ProjectWindow from './components/ProjectWindow';
+import ProfileWindow from './components/ProfileWindow';
+import ResumeWindow from './components/ResumeWindow';
 import { StyleHide, imageMapping,
   handleDoubleClickEnterLink,handleDoubleTapEnterMobile,
   handleDoubleClickiframe, handleDoubleTapiframeMobile,
@@ -54,8 +50,6 @@ function App() {
   const [itemBeingSelected, setItemBeingSelected] = useState(null)
   const [installIcon, setInstallIcon] = useState(0)
   const [currentRightClickFolder, setCurrentRightClickFolder] = useState('Desktop')
-  const [ringMsn, setRingMsn] = useState(false)
-  const [showChart, setShowChart] = useState(false)
   const [keyRef, setKeyRef] = useState(0)
   const [localBg, setLocalBg] = useState(() => {
     const prevBg = localStorage.getItem('background')
@@ -65,7 +59,6 @@ function App() {
     const prevEffect = localStorage.getItem('effect')
     return prevEffect? prevEffect : null
   })
-  const [websocketConnection, setWebsocketConnection] = useState(false)
   const [Cel, setCel] = useState(true); // Celsius or Fahrenheit
   const [weather, setWeather] = useState(() => {
         const storedTempF = localStorage.getItem('tempF');
@@ -93,7 +86,6 @@ function App() {
   const [chatBotActive, setChatBotActive] = useState(false);
   const [runCatVideo, setRunCatVideo] = useState(false)
   const [newsPopup, setNewsPopup] = useState(false)
-  const [onlineUser, setOnlineUser] = useState(0)
   const [sortedIcon, setSortedIcon] = useState([])
   const [sortIconTrigger, setSortIconTrigger] = useState(0)
   const [deleteIcon, setDeleteIcon] = useState(0)
@@ -129,12 +121,9 @@ function App() {
     return savedIconSize ? Number(savedIconSize) : 0
   });
   const [iconSize, setIconSize] = useState(false)
-  const [allowNoti, setAllowNoti] = useState(false)
-  const socket = useRef(null);
   const [clearNotiTimeOut, setClearNotiTimeOut] = useState(null)
   const [newMessage, setNewMessage] = useState('');
   const [notiOn, setNotiOn] = useState(false);
-  const [chatDown, setChatDown] = useState(false)
   const [key, setKey] = useState(0)
   const [dragging, setDragging] = useState(false)
   const DesktopRef = useRef(null);
@@ -152,14 +141,6 @@ function App() {
   const [login, setLogin] = useState(false) 
   const [windowsShutDownAnimation, setWindowsShutDownAnimation] = useState(false)
   const [detectMouse, setDetectMouse] = useState(false)
-  const endOfMessagesRef = useRef(null);
-  const [KeyChatSession, setKeyChatSession] = useState('')
-  const [sendDisable, setSendDisable] = useState(false)
-  const [userNameValue, setUserNameValue] = useState(() => {
-    return localStorage.getItem('username') || '';
-  });
-  const [chatValue, setChatValue] = useState('')
-  const [chatData, setChatData] = useState([])
   const [shutdownWindow, setShutdownWindow] = useState(false)
   const ClearTOdonttouch = useRef(null);
   const ClearTOSongfunction = useRef(null);
@@ -199,9 +180,6 @@ function App() {
     expand: false, show: false, hide: false, focusItem: true,  // focusItem is window, item_1focus - 5 is the icon
     x: 0, y: 0, zIndex: 1,});
 
-  const [MailExpand, setMailExpand] = useState(
-  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
-
   const [NftExpand, setNftExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
@@ -210,9 +188,6 @@ function App() {
 
   const [TypeExpand, setTypeExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
-
-  const [WinampExpand, setWinampExpand] = useState(
-  {focus: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [ResumeFileExpand, setResumeFileExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
@@ -232,21 +207,21 @@ function App() {
   const [desktopIcon, setDesktopIcon] = useState(() => {
   const localItems = localStorage.getItem('icons');
 
-  const deleteIcon = ['Cat', 'AiAgent','Winamp','Paint','3dObject'];
+  const deleteIcon = ['Cat', 'AiAgent', 'Paint', '3dObject', 'Nft', 'Note', 'ResumeFile', 'Github', 'WebResume', 'AiAgent', 'Fortune', 'PixelPic', 'IE', 'ResetStorage', 'Patch', 'TaskManager', 'Picture', 'Utility', 'Hard Disk (C:)', 'Hard Disk (D:)', 'CD-ROM', '001', '002', '003', '004', '005', '006', '007', '008', '009', '010', '011'];
 
   const filteredItems = iconInfo.filter(item => !deleteIcon.includes(item.name));
 
-  const parsedItems = localItems ? JSON.parse(localItems) : filteredItems;
+  if (localItems) {
+    const parsedItems = JSON.parse(localItems);
+    const validNames = iconInfo.map(item => item.name);
+    return parsedItems.filter(item => validNames.includes(item.name));
+  }
 
- 
-  return parsedItems;
+  return filteredItems;
 });
 
   const [MineSweeperExpand, setMineSweeperExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
-
-  const [MSNExpand, setMSNExpand] = useState(
-    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [BgSettingExpand, setBgSettingExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
@@ -269,10 +244,19 @@ function App() {
   const [TaskManagerExpand, setTaskManagerExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
-  const [StoreExpand, setStoreExpand] = useState(
-    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
-  
   const [btcShow, setBtcShow] = useState(
+    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
+
+  const [BlogExpand, setBlogExpand] = useState(
+    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
+
+  const [ProjectsExpand, setProjectsExpand] = useState(
+    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
+
+  const [ProfileExpand, setProfileExpand] = useState(
+    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
+
+  const [ResumeWinExpand, setResumeWinExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [UserCreatedFolder, setUserCreatedFolder] = useState(() => {
@@ -457,157 +441,6 @@ useEffect(() => {
       document.removeEventListener("touchstart", handleInteractionMobile);
     };
   }, [rightClickDefault]);
-  
-
-
-
-    const connectWebSocket = async () => {
-      
-      try {
-
-        // Wake up the Render backend
-        await fetch('https://notebackend-wrqt.onrender.com/ping');
-
-        // Close existing socket if still open or connecting
-        if (socket.current && socket.current.readyState !== WebSocket.CLOSED) {
-          // Remove old listeners
-          socket.current.onopen = null;
-          socket.current.onclose = null;
-          socket.current.onerror = null;
-          socket.current.onmessage = null;
-
-          // Close and wait for complete shutdown
-          socket.current.close();
-
-          await new Promise(resolve => {
-            socket.current.onclose = () => {
-              setWebsocketConnection(false);
-              resolve();
-            };
-          });
-        }
-
-        // Create new WebSocket instance
-        socket.current = new WebSocket('wss://notebackend-wrqt.onrender.com');
-
-        socket.current.onopen = () => {
-          console.log('WebSocket connected');
-          getChat()
-          setWebsocketConnection(true);
-          setLoading(false);
-        };
-
-        socket.current.onmessage = (event) => {
-          const data = JSON.parse(event.data);
-
-          if (data.count !== undefined) {
-            setOnlineUser(data.count);
-          }
-
-          if (data.key) {
-            setKeyChatSession(data.key);
-          } 
-          if (data.ring) {
-            setRingMsn(true)
-          }
-          else if (data.name && data.chat) {
-            setChatData(prevData => [...prevData, data]);
-            setLoadedMessages(prev => [...prev, data]);
-            setAllowNoti(true);
-
-            setTimeout(() => {
-              endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-            }, 100);
-          }
-        };
-
-        socket.current.onerror = (error) => {
-          console.error('WebSocket error:', error);
-          setLoading(false);
-          setWebsocketConnection(false);
-        };
-
-        socket.current.onclose = () => {
-          console.log('🔌 WebSocket closed');
-          setWebsocketConnection(false);
-        };
-
-      } catch (err) {
-        console.error('WebSocket connection error:', err);
-        setLoading(false);
-        setWebsocketConnection(false);
-      }
-    };
-
-    useEffect(() => {
-      setLoading(true);
-      connectWebSocket();
-
-      return () => {
-        if (socket.current) {
-          socket.current.onopen = null;
-          socket.current.onclose = null;
-          socket.current.onerror = null;
-          socket.current.onmessage = null;
-          socket.current.close();
-          setWebsocketConnection(false);
-        }
-      };
-    }, []);
-
-
-    useEffect(() => {
-      let invisibilityTimeout = null;
-
-      const handleVisibilityChange = () => {
-        if (document.visibilityState === 'hidden') {
-          // Start a 30s countdown to close socket
-          invisibilityTimeout = setTimeout(() => {
-            if (socket.current && socket.current.readyState === WebSocket.OPEN) {
-              console.log('User was invisible for 10s. Closing WebSocket.');
-              socket.current.close();
-              setWebsocketConnection(false);
-            }
-          }, 10000); 
-        } else {
-          // 
-          if (invisibilityTimeout) {
-            clearTimeout(invisibilityTimeout);
-            invisibilityTimeout = null;
-          }
-        }
-      };
-
-      document.addEventListener('visibilitychange', handleVisibilityChange);
-
-      return () => {
-        document.removeEventListener('visibilitychange', handleVisibilityChange);
-        if (invisibilityTimeout) clearTimeout(invisibilityTimeout);
-      };
-    }, []);
-
-
-
-
-
-  useEffect(() => { // noti
-    if(allowNoti){
-
-      if (chatData.length) {
-        endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-      }
-
-      if(!MSNExpand.show || MSNExpand.hide) {
-        setNotiOn(false);
-        setTimeout(() => {
-            clearTimeout(clearNotiTimeOut)
-            setNotiOn(true);
-            setNewMessage({ type: 'msn'});  // Notification message
-        }, 100);
-      }
-    }
-      
-  },[chatData])
 
 
 useEffect(() => { // touch support device === true
@@ -909,20 +742,14 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     itemIsBeingDeleted, setItemIsBeingDeleted,
     itemBeingSelected, setItemBeingSelected,
     installIcon, setInstallIcon,
-    StoreExpand, setStoreExpand,
     deletepermanently,
     currentRightClickFolder, setCurrentRightClickFolder,
-    ringMsnOff,
-    ringMsn, setRingMsn,
-    showChart, setShowChart,
     setRegErrorPopUp, setRegErrorPopUpVal,
     keyRef, setKeyRef,
     UserCreatedFolder, setUserCreatedFolder,
     TaskManagerExpand, setTaskManagerExpand,
     localEffect, setLocalEffect,
     localBg, setLocalBg,
-    connectWebSocket,
-    websocketConnection, setWebsocketConnection,
     city, setCity,
     Cel, setCel,
     weather, setWeather,
@@ -934,7 +761,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     PatchExpand, setPatchExpand,
     runCatVideo, setRunCatVideo,
     newsPopup, setNewsPopup,
-    onlineUser,
     UtilityRef,
     PaintExpand, setPaintExpand,
     sortedIcon, setSortedIcon,
@@ -949,7 +775,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     handleShowInfolderMobile, handleShowInfolder,
     handleMobileLongPress,
     iconBeingRightClicked, setIconBeingRightClicked,
-    rightClickIcon, setRightClickIcon, 
+    rightClickIcon, setRightClickIcon,
     BinRef,
     BinExpand, setBinExpand,
     refresh, setRefresh,
@@ -975,7 +801,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     clearNotiTimeOut, setClearNotiTimeOut,
     newMessage, setNewMessage,
     notiOn, setNotiOn,
-    chatDown,
     handleDragStop,
     key, setKey,
     dragging, setDragging,
@@ -999,7 +824,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     StyleHide,
     isTouchDevice, setIsTouchDevice,
     ProjectExpand, setProjectExpand,
-    MailExpand, setMailExpand,
     NftExpand, setNftExpand,
     NoteExpand, setNoteExpand,
     TypeExpand, setTypeExpand,
@@ -1007,7 +831,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     handleDoubleClickEnterLink,
     handleDoubleClickiframe,
     handleDoubleTapiframeMobile,
-    WinampExpand, setWinampExpand,
     showClippy, setShowClippy,
     clippyIndex, setClippyIndex,
     randomClippyPopup, setRandomClippyPopup,
@@ -1034,21 +857,18 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     deleteTap,
     shutdownWindow, setShutdownWindow,
     MineSweeperExpand, setMineSweeperExpand,
-    MSNExpand, setMSNExpand,
-    chatData, setChatData,
-    chatValue, setChatValue,
-    createChat,
-    userNameValue, setUserNameValue,
-    endOfMessagesRef,
     clippyUsername, setClippyUsername,
     ClearTOclippyUsernameFunction,
-    sendDisable, setSendDisable,
     login, setLogin,
     openProjectExpand, setOpenProjectExpand,
     projectUrl, setProjectUrl,
     projectname,
     windowsShutDownAnimation, setWindowsShutDownAnimation,
     BgSettingExpand, setBgSettingExpand,
+    BlogExpand, setBlogExpand,
+    ProjectsExpand, setProjectsExpand,
+    ProfileExpand, setProfileExpand,
+    ResumeWinExpand, setResumeWinExpand,
     themeDragBar, setThemeDragBar,
     RunExpand, setRunExpand,
     reMountRun, setReMountRun,
@@ -1183,23 +1003,22 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
           photoMode={true}
         />
         <AppIcons/>
-        <Store/>
         <TaskManager/>
         <Patch/>
-        <SpinningCat/>
         <NewsApp/>
         <RightClickWindows/>
         <Notification/>
         <Shutdown/>
         <MyComputer/>
         <MyBioFolder/>
+        <BlogWindow/>
+        <ProjectWindow/>
+        <ProfileWindow/>
+        <ResumeWindow/>
         <ResumeFolder/>
         <ProjectFolder/>
-        <MailFolder/>
         <ResumeFile/>
-        <WebampPlayer/>
         <MineSweeper/>
-        <MsnFolder/>
         <OpenProject/>
         <BgSetting/>
         <Run/>
@@ -1249,8 +1068,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
 // }
 
   function deletepermanently(deleteName) { // delete from desktopIcon
-    if(deleteName === 'Store') return;
-    
     setItemIsBeingDeleted(deleteName)
     console.log(deleteName)
     deleteTap(deleteName)
@@ -1406,89 +1223,6 @@ function handleDrop(e, name, target, oldFolderID) {
     }
 
 
-    function ringMsnOff() {
-
-      if(socket.current) {
-        socket.current.send(JSON.stringify({ ring: true }));
-      } else {
-          console.error('WebSocket is not initialized.');
-      }
-    }
-
-  
-    async function createChat() { // create chat
-      const filter = new Filter();
-  
-      setTimeout(() => {
-          setSendDisable(false);
-      }, 20000);
-  
-      setSendDisable(true);
-
-  
-      if (chatValue.trim().length === 0) {
-          setSendDisable(false);
-          return;
-      }
-  
-      const offendedWords = badword(); // imported another file
-      offendedWords.forEach(word => filter.addWords(word));
-  
-      const newChatVal = filter.clean(chatValue);
-      const payload = {
-          chat: newChatVal,
-          key: KeyChatSession,
-          mouse: detectMouse,
-          touch: isTouchDevice,
-          chatBotActive: chatBotActive,
-      };
-
-      if (userNameValue.trim().length < 1) {
-        payload.name = 'Anonymous'
-      }
-  
-      if (userNameValue.trim().length > 0) {
-          const cleanedName = filter.clean(userNameValue);
-          payload.name = cleanedName;
-      }
-  
-      // Send the payload via WebSocket
-      if (socket.current) { // Check if socket is initialized
-          socket.current.send(JSON.stringify(payload));
-          console.log(payload)
-      } else {
-          console.error('WebSocket is not initialized.');
-      }
-  
-      // Clear the chat input field and reset sendDisable
-      setChatValue('');
-      setSendDisable(false);
-      console.log('Chat message sent:', payload);
-  }
-
-
-// Function to fetch chat data
-async function getChat() {
-  setChatData('')
-  try {
-    const response = await axios.get(`https://notebackend4.onrender.com/chat/getchat/`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      }
-    });
-    setChatDown(false)
-    setChatData(response.data.chat);
-    setLoadedMessages(response.data.chat.slice(-40))
-    // if(MSNExpand.show){
-    //   endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-    // }
-    // setKeyChatSession(response.data.key)
-  } catch (error) {
-    setChatDown(true)
-    console.error('Error fetching Chat:', error);
-  }
-}
 
 
 function ObjectState() {
@@ -1498,7 +1232,6 @@ function ObjectState() {
     { name: 'Resume',      setter: setResumeExpand,     usestate: ResumeExpand,     color: 'rgba(65, 138, 68, 0.85)', size: 'small' },
     { name: 'Project',     setter: setProjectExpand,    usestate: ProjectExpand,    color: 'rgba(211, 117, 0, 0.85)', size: 'small' },
     { name: 'Picture',     setter: setPictureExpand,    usestate: pictureExpand,    color: 'rgba(85, 50, 148, 0.85)', size: 'large' },
-    { name: 'Mail',        setter: setMailExpand,       usestate: MailExpand,       color: 'rgba(178, 26, 77, 0.85)', size: 'small' },
     { name: 'Nft',         setter: setNftExpand,        usestate: NftExpand,        color: 'rgba(142, 29, 126, 0.85)', size: 'small' },
     { name: 'Note',        setter: setNoteExpand,       usestate: NoteExpand,       color: 'rgba(114, 81, 54, 0.85)', size: 'small' },
     { name: 'AiAgent',     setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(82, 117, 132, 0.85)', size: 'small' },
@@ -1506,10 +1239,8 @@ function ObjectState() {
     { name: 'PixelPic',    setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'IE',          setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'Fortune',     setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(224, 88, 43, 0.85)', size: 'small' },
-    { name: 'Winamp',      setter: setWinampExpand,     usestate: WinampExpand,     color: 'rgba(105, 136, 145, 0.85)', size: 'small' },
     { name: 'ResumeFile',  setter: setResumeFileExpand, usestate: ResumeFileExpand, color: 'rgba(133, 165, 67, 0.85)', size: 'small' },
     { name: 'MineSweeper', setter: setMineSweeperExpand,usestate: MineSweeperExpand,color: 'rgba(187, 51, 48, 0.85)', size: 'small' },
-    { name: 'MSN',         setter: setMSNExpand,        usestate: MSNExpand,        color: 'rgba(52, 70, 143, 0.85)', size: 'small' },
     { name: 'Internet',    setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'Settings',    setter: setBgSettingExpand,  usestate: BgSettingExpand,  color: 'rgba(140, 140, 140, 0.85)', size: 'small' },
     { name: 'Run',         setter: setRunExpand,        usestate: RunExpand,        color: 'rgba(86, 114, 122, 0.85)', size: 'small' },
@@ -1520,8 +1251,12 @@ function ObjectState() {
     { name: 'Paint',       setter: setPaintExpand,      usestate: PaintExpand,      color: 'rgba(193, 178, 46, 0.85)', size: 'small' },
     { name: 'Utility',     setter: setUtilityExpand,    usestate: UtilityExpand,    color: 'rgba(116, 85, 54, 0.85)', size: 'small' },
     { name: 'TaskManager', setter: setTaskManagerExpand,usestate: TaskManagerExpand,color: 'rgba(218, 160, 109, 0.85)', size: 'small' },
-    { name: 'Store',       setter: setStoreExpand,      usestate: StoreExpand,      color: 'rgba(132, 140, 207, 0.85)', size: 'small' },
     { name: 'Bitcoin',     setter: setBtcShow,          usestate: btcShow,          color: 'rgba(132, 140, 207, 0.85)', size: 'small' },
+    { name: 'News',        setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
+    { name: 'Blog',        setter: setBlogExpand,       usestate: BlogExpand,       color: 'rgba(46, 133, 64, 0.85)', size: 'small' },
+    { name: 'Projects',    setter: setProjectsExpand,   usestate: ProjectsExpand,   color: 'rgba(211, 117, 0, 0.85)', size: 'small' },
+    { name: 'Profile',     setter: setProfileExpand,    usestate: ProfileExpand,    color: 'rgba(100, 130, 180, 0.85)', size: 'small' },
+    { name: 'ResumeWin',   setter: setResumeWinExpand,  usestate: ResumeWinExpand,  color: 'rgba(133, 165, 67, 0.85)', size: 'small' },
     
     // Add user folders dynamically with individual state management
     ...UserCreatedFolder.map(folder => ({
@@ -1619,14 +1354,7 @@ function handleShow(name) {
         }
         maxZindexRef.current += 1;
       }, 100);
-      
-      // Your existing special cases...
-      if(lowerCaseName === 'mail') clippySendemailfunction();
-      if(lowerCaseName === 'winamp') clippySongFunction();
-      if(lowerCaseName === 'msn') clippyUsernameFunction();
-      if(lowerCaseName === 'mail') clippySendemailfunction();
-        if(lowerCaseName === 'winamp') clippySongFunction();
-        if(lowerCaseName === 'msn') clippyUsernameFunction();
+
         if(lowerCaseName === 'nft') {
           handleDoubleClickiframe('Nft', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
           handleShow('Internet');
@@ -1733,9 +1461,6 @@ function handleShowMobile(name) {
         }
         maxZindexRef.current += 1;
       }, 100);
-        if(lowerCaseName === 'mail') clippySendemailfunction();
-        if(lowerCaseName === 'winamp') clippySongFunction();
-        if(lowerCaseName === 'msn') clippyUsernameFunction();
         if(lowerCaseName === 'nft') {
           handleDoubleClickiframe('Nft', setOpenProjectExpand, setProjectUrl, setBackTrackIe, setForwardTrackIe)
           handleShow('Internet');

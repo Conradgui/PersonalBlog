@@ -17,16 +17,13 @@ import p8 from '../assets/008.jpg';
 import p9 from '../assets/009.jpg';
 import p10 from '../assets/010.jpg';
 import p11 from '../assets/011.jpg';
-import chat from '../assets/chat.gif';
 import settings from '../assets/settings.png';
 import fortune from '../assets/fortune.gif';
 import pudgy from '../assets/pudgy.gif';
 import cube from '../assets/cube.gif';
 import agent from '../assets/bot.gif';
-import music from '../assets/win_tile.png';
 import random from '../assets/random.png';
 import loading from '../assets/loading.gif';
-import envelope from '../assets/envelope.png';
 import painttile from '../assets/painttile.png';
 import projecttile from '../assets/projecttile.png';
 import resumefiletile from '../assets/resumefiletile.png';
@@ -44,7 +41,6 @@ import weatherImg from '../assets/weathertile.png';
 import githublogo from '../assets/github.gif';
 import newsicon from '../assets/newstile.png';
 import task from '../assets/task.png'
-import store from '../assets/store_tile.png'
 import layer from '../assets/layer_tile.png'
 import ie_tilt from '../assets/ie_tilt.png'
 
@@ -130,13 +126,6 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundPosition: 'center',
           pointerEvents: disable ? 'none' : 'auto',
         };
-      case 'MSN':
-        return {
-          backgroundImage: `url(${chat})`,
-          backgroundPosition: '50% 13px',
-          backgroundSize: '85px',
-          backgroundRepeat: 'no-repeat',
-        };
       case 'Settings':
         return {
           backgroundImage: `url(${settings})`,
@@ -172,13 +161,6 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundSize: '85px',
           backgroundRepeat: 'no-repeat',
         };
-      case 'Winamp':
-        return {
-          backgroundImage: `url(${music})`,
-          backgroundPosition: 'center',
-          backgroundSize: '64px',
-          backgroundRepeat: 'no-repeat',
-        };
       case 'MyComputer':
         return {
           backgroundImage: `url(${laptop})`,
@@ -191,13 +173,6 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundImage: `url(${tileCooldown.current ? loading : random})`,
           backgroundPosition: '50% 60%',
           backgroundSize: tileCooldown.current ? '26px' : '48px',
-          backgroundRepeat: 'no-repeat',
-        };
-      case 'Mail':
-        return {
-          backgroundImage: `url(${envelope})`,
-          backgroundPosition: '50% 60%',
-          backgroundSize: '40px',
           backgroundRepeat: 'no-repeat',
         };
       case 'About':
@@ -306,13 +281,6 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundImage: `url(${task})`,
           backgroundPosition: '50% 57%',
           backgroundSize: '42px',
-          backgroundRepeat: 'no-repeat',
-        };
-        case 'Store':
-        return {
-          backgroundImage: `url(${store})`,
-          backgroundPosition: '50% 57%',
-          backgroundSize: '64px',
           backgroundRepeat: 'no-repeat',
         };
         case 'PixelPic':
