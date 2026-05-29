@@ -1,0 +1,240 @@
+/* ---- MarkdownRenderer Win95 Style ---- */
+
+.markdown-renderer {
+    font-family: 'MS Sans Serif 8pt bold', 'Segoe UI', Tahoma, sans-serif;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #f5f2f2 #1e1d1d #1e1d1d #f5f2f2;
+    padding: 2px;
+    box-sizing: border-box;
+}
+
+.markdown-renderer-content {
+    background: white;
+    border: 2px solid;
+    border-color: #87888f #f5f2f2 #f5f2f2 #87888f;
+    padding: 8px 10px;
+    overflow-y: auto;
+    max-height: 100%;
+    box-sizing: border-box;
+}
+
+/* ---- Headings ---- */
+
+.markdown-renderer-content h1 {
+    font-family: 'MS Sans Serif 8pt bold', 'Segoe UI', Tahoma, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    margin: 12px 0 6px 0;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #87888f;
+}
+
+.markdown-renderer-content h2 {
+    font-family: 'MS Sans Serif 8pt bold', 'Segoe UI', Tahoma, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    color: #000;
+    margin: 10px 0 5px 0;
+}
+
+.markdown-renderer-content h3 {
+    font-family: 'MS Sans Serif 8pt bold', 'Segoe UI', Tahoma, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    color: #000;
+    margin: 8px 0 4px 0;
+}
+
+.markdown-renderer-content h4,
+.markdown-renderer-content h5,
+.markdown-renderer-content h6 {
+    font-family: 'MS Sans Serif 8pt bold', 'Segoe UI', Tahoma, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: #000;
+    margin: 6px 0 3px 0;
+}
+
+/* ---- Paragraphs & Text ---- */
+
+.markdown-renderer-content p {
+    font-family: 'MS Sans Serif 8pt bold', 'Segoe UI', Tahoma, sans-serif;
+    font-size: 12px;
+    line-height: 1.6;
+    color: #000;
+    margin: 6px 0;
+}
+
+.markdown-renderer-content strong {
+    font-weight: bold;
+}
+
+.markdown-renderer-content em {
+    font-style: italic;
+}
+
+.markdown-renderer-content del {
+    text-decoration: line-through;
+}
+
+/* ---- Links ---- */
+
+.markdown-renderer-content a {
+    color: #0000ff;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.markdown-renderer-content a:hover {
+    color: #ff0000;
+}
+
+.markdown-renderer-content a:visited {
+    color: #800080;
+}
+
+/* ---- Images ---- */
+
+.markdown-renderer-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 6px 0;
+    border: 2px solid;
+    border-color: #87888f #f5f2f2 #f5f2f2 #87888f;
+}
+
+/* ---- Inline Code ---- */
+
+.markdown-renderer-content code {
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 12px;
+    background: #c0c0c0;
+    color: #000;
+    padding: 1px 4px;
+    border: 1px solid;
+    border-color: #87888f #f5f2f2 #f5f2f2 #87888f;
+}
+
+/* ---- Code Blocks ---- */
+
+.markdown-renderer-content pre {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 8px 10px;
+    margin: 6px 0;
+    overflow-x: auto;
+    border: 2px solid;
+    border-color: #87888f #f5f2f2 #f5f2f2 #87888f;
+    box-sizing: border-box;
+}
+
+.markdown-renderer-content pre code {
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 12px;
+    background: transparent;
+    color: #d4d4d4;
+    padding: 0;
+    border: none;
+}
+
+/* ---- Lists ---- */
+
+.markdown-renderer-content ul,
+.markdown-renderer-content ol {
+    font-family: 'MS Sans Serif 8pt bold', 'Segoe UI', Tahoma, sans-serif;
+    font-size: 12px;
+    margin: 6px 0;
+    padding-left: 24px;
+    line-height: 1.6;
+}
+
+.markdown-renderer-content li {
+    margin: 2px 0;
+}
+
+.markdown-renderer-content li::marker {
+    color: #000;
+}
+
+/* ---- Blockquote ---- */
+
+.markdown-renderer-content blockquote {
+    margin: 6px 0;
+    padding: 4px 10px;
+    border-left: 3px solid #87888f;
+    background: #f0f0f0;
+    color: #333;
+}
+
+.markdown-renderer-content blockquote p {
+    margin: 3px 0;
+}
+
+/* ---- Horizontal Rule ---- */
+
+.markdown-renderer-content hr {
+    border: none;
+    border-top: 1px solid #87888f;
+    margin: 10px 0;
+}
+
+/* ---- Tables ---- */
+
+.markdown-renderer-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 6px 0;
+    font-family: 'MS Sans Serif 8pt bold', 'Segoe UI', Tahoma, sans-serif;
+    font-size: 12px;
+}
+
+.markdown-renderer-content th {
+    background: #c0c0c0;
+    color: #000;
+    font-weight: bold;
+    text-align: left;
+    padding: 4px 8px;
+    border: 1px solid;
+    border-color: #f5f2f2 #87888f #87888f #f5f2f2;
+}
+
+.markdown-renderer-content td {
+    padding: 4px 8px;
+    border: 1px solid #87888f;
+    background: white;
+}
+
+.markdown-renderer-content tr:nth-child(even) td {
+    background: #f0f0f0;
+}
+
+/* ---- Scrollbar (Webkit) ---- */
+
+.markdown-renderer-content::-webkit-scrollbar {
+    width: 16px;
+}
+
+.markdown-renderer-content::-webkit-scrollbar-track {
+    background: #c0c0c0;
+    border: 1px solid #87888f;
+}
+
+.markdown-renderer-content::-webkit-scrollbar-thumb {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #f5f2f2 #1e1d1d #1e1d1d #f5f2f2;
+}
+
+.markdown-renderer-content::-webkit-scrollbar-thumb:hover {
+    background: #a0a0a0;
+}
+
+.markdown-renderer-content::-webkit-scrollbar-button {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #f5f2f2 #1e1d1d #1e1d1d #f5f2f2;
+    height: 16px;
+}
