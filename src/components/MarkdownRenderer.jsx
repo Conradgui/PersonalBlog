@@ -8,35 +8,20 @@ import '../css/MarkdownRenderer.css'
  */
 function MarkdownRenderer({ content, className = '' }) {
 
-  // 自定义渲染器：img, a, code
+  // 自定义渲染器：pre, img, a, code
   const customRenderers = {
-    // img: lazy loading
-    img({ node, ...props }) {
+    // pre: 代码块容器
+    pre({ children, ...props }) {
       return (
-        <img
-          {...props}
-          loading="lazy"
-          alt={props.alt || ''}
-        />
+        <pre className="md-code-block" {...props}>
+          {children}
+        </pre>
       )
     },
 
-    // a: 新窗口打开
-    a({ node, ...props }) {
-      return (
-        <a
-          {...props}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {props.children}
-        </a>
-      )
-    },
-
-    // code: 区分行内 code 和 block code
-    code({ node, inline, className, children, ...props }) {
-      const isBlock = !inline && (className || '').includes('language-')
+    // code: 区分行内 code 和 block code（v10 不再传 inline prop）
+    code({ className, children, ...props }) {
+      const isBlock = (className || '').includes('language-')
 
       if (isBlock) {
         return (
@@ -47,9 +32,34 @@ function MarkdownRenderer({ content, className = '' }) {
       }
 
       return (
-        <code {...props}>
+        <code className="md-inline-code" {...props}>
           {children}
         </code>
+      )
+    },
+
+    // img: lazy loading
+    img({ ...props }) {
+      return (
+        <img
+          {...props}
+          loading="lazy"
+          alt={props.alt || ''}
+        />
+      )
+    },
+
+    // a: 新窗口打开
+    a({ href, children, ...props }) {
+      return (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          {...props}
+        >
+          {children}
+        </a>
       )
     },
   }
