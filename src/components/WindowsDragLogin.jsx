@@ -51,7 +51,7 @@ export default function WindowsDragLogin() {
       return () => el.removeEventListener('wheel', onWheel);
     }, [tileScreen]);
 
-  const notInstalled = ['Cat', 'AiAgent','Winamp','Paint','3dObject']
+  const notInstalled = ['Cat', 'AiAgent','Paint','3dObject']
   const bannedIcon = ['Photo', 'Internet', 'Bitcoin'];
   const icons = ObjectState();
 

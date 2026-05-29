@@ -207,7 +207,7 @@ function App() {
   const [desktopIcon, setDesktopIcon] = useState(() => {
   const localItems = localStorage.getItem('icons');
 
-  const deleteIcon = ['Cat', 'AiAgent', 'Winamp', 'Paint', '3dObject', 'MSN', 'Mail', 'Store', 'Nft', 'Note', 'ResumeFile', 'Github', 'WebResume', 'AiAgent', 'Fortune', 'PixelPic', 'IE', 'ResetStorage', 'Patch', 'TaskManager', 'Picture', 'Utility', 'Hard Disk (C:)', 'Hard Disk (D:)', 'CD-ROM', '001', '002', '003', '004', '005', '006', '007', '008', '009', '010', '011'];
+  const deleteIcon = ['Cat', 'AiAgent', 'Paint', '3dObject', 'Nft', 'Note', 'ResumeFile', 'Github', 'WebResume', 'AiAgent', 'Fortune', 'PixelPic', 'IE', 'ResetStorage', 'Patch', 'TaskManager', 'Picture', 'Utility', 'Hard Disk (C:)', 'Hard Disk (D:)', 'CD-ROM', '001', '002', '003', '004', '005', '006', '007', '008', '009', '010', '011'];
 
   const filteredItems = iconInfo.filter(item => !deleteIcon.includes(item.name));
 

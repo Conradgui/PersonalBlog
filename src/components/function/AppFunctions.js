@@ -195,6 +195,12 @@ export function imageMapping (name, type) {
     case "ie":
       return ie;
 
+    case 'Profile':
+      return About; // 使用 About 图标
+
+    case 'ResumeWin':
+      return Resume; // 使用 Resume 图标
+
     default:
       if(type === 'folder') {
         return Project;
