@@ -32,6 +32,7 @@ import Patch from './components/Patch';
 import WindowsDragLogin from './components/WindowsDragLogin';
 import TaskManager from './components/TaskManager';
 import AppIcons from './components/AppIcons';
+import BlogWindow from './components/BlogWindow';
 import { StyleHide, imageMapping,
   handleDoubleClickEnterLink,handleDoubleTapEnterMobile,
   handleDoubleClickiframe, handleDoubleTapiframeMobile,
@@ -271,6 +272,9 @@ function App() {
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
   
   const [btcShow, setBtcShow] = useState(
+    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
+
+  const [BlogExpand, setBlogExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [UserCreatedFolder, setUserCreatedFolder] = useState(() => {
@@ -1047,6 +1051,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     projectname,
     windowsShutDownAnimation, setWindowsShutDownAnimation,
     BgSettingExpand, setBgSettingExpand,
+    BlogExpand, setBlogExpand,
     themeDragBar, setThemeDragBar,
     RunExpand, setRunExpand,
     reMountRun, setReMountRun,
@@ -1191,6 +1196,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
         <Shutdown/>
         <MyComputer/>
         <MyBioFolder/>
+        <BlogWindow/>
         <ResumeFolder/>
         <ProjectFolder/>
         <MailFolder/>
@@ -1513,6 +1519,7 @@ function ObjectState() {
     { name: 'TaskManager', setter: setTaskManagerExpand,usestate: TaskManagerExpand,color: 'rgba(218, 160, 109, 0.85)', size: 'small' },
     { name: 'Store',       setter: setStoreExpand,      usestate: StoreExpand,      color: 'rgba(132, 140, 207, 0.85)', size: 'small' },
     { name: 'Bitcoin',     setter: setBtcShow,          usestate: btcShow,          color: 'rgba(132, 140, 207, 0.85)', size: 'small' },
+    { name: 'Blog',        setter: setBlogExpand,       usestate: BlogExpand,       color: 'rgba(46, 133, 64, 0.85)', size: 'small' },
     
     // Add user folders dynamically with individual state management
     ...UserCreatedFolder.map(folder => ({
