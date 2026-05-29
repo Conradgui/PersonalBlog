@@ -1,12 +1,5 @@
 import React, { useState, useEffect, useRef, } from 'react'
 import UserContext from './Context'
-// bad-words removed - using simple passthrough filter
-class Filter {
-  constructor() { this.words = new Set(); }
-  addWords(...words) { words.forEach(w => this.words.add(w.toLowerCase())); }
-  clean(text) { return text; }
-}
-import badword from './badword'
 import Footer from './components/Footer';
 import Store from './components/Store';
 import Dragdrop from './components/Dragdrop';
@@ -1422,26 +1415,20 @@ function handleDrop(e, name, target, oldFolderID) {
 
   
     async function createChat() { // create chat
-      const filter = new Filter();
-  
       setTimeout(() => {
           setSendDisable(false);
       }, 20000);
-  
+
       setSendDisable(true);
 
-  
+
       if (chatValue.trim().length === 0) {
           setSendDisable(false);
           return;
       }
-  
-      const offendedWords = badword(); // imported another file
-      offendedWords.forEach(word => filter.addWords(word));
-  
-      const newChatVal = filter.clean(chatValue);
+
       const payload = {
-          chat: newChatVal,
+          chat: chatValue,
           key: KeyChatSession,
           mouse: detectMouse,
           touch: isTouchDevice,
@@ -1451,10 +1438,9 @@ function handleDrop(e, name, target, oldFolderID) {
       if (userNameValue.trim().length < 1) {
         payload.name = 'Anonymous'
       }
-  
+
       if (userNameValue.trim().length > 0) {
-          const cleanedName = filter.clean(userNameValue);
-          payload.name = cleanedName;
+          payload.name = userNameValue;
       }
   
       // Send the payload via WebSocket

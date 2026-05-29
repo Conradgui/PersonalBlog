@@ -1,8 +1,4 @@
 import UseContext from '../Context'
-// @emailjs/browser removed - stub
-const emailjs = {
-  sendForm: () => Promise.resolve({ text: 'Email service removed' }),
-};
 import { useContext, useRef } from "react";
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
@@ -35,21 +31,7 @@ const form = useRef();
 
   const sendEmail = (e) => {
     e.preventDefault();
-
-    emailjs
-      .sendForm('service_3jp9sce', 'template_mwqeuol', form.current, {
-        publicKey: 'VEMHa6EGtulAzDYSH',
-      })
-      .then(
-        () => {
-          clippyThanksYouFunction()
-          alert('Thank you for your interest, will contact you back shortly!')
-          form.current.reset();
-        },
-        (error) => {
-          console.log('FAILED...', error.text);
-        },
-      );
+    alert('This feature has been disabled. Please contact the site owner directly.');
   };
 
 // ------------------------------------------------------------------------------
