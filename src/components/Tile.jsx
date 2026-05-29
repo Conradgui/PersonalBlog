@@ -26,9 +26,7 @@ import random from '../assets/random.png';
 import loading from '../assets/loading.gif';
 import painttile from '../assets/painttile.png';
 import projecttile from '../assets/projecttile.png';
-import resumefiletile from '../assets/resumefiletile.png';
 import runtile from '../assets/runtile.png';
-import game from '../assets/game.png';
 import bin from '../assets/delete.png';
 import uti from '../assets/uti.png';
 import pencil from '../assets/pencil.png';
@@ -39,7 +37,6 @@ import openfolder from '../assets/open-folder.png';
 import back from '../assets/back-arrow.png';
 import weatherImg from '../assets/weathertile.png';
 import githublogo from '../assets/github.gif';
-import newsicon from '../assets/newstile.png';
 import task from '../assets/task.png'
 import layer from '../assets/layer_tile.png'
 import ie_tilt from '../assets/ie_tilt.png'
@@ -51,15 +48,14 @@ const imageList = [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11];
 const ItemType = 'TILE';
 
 export default function Tile({ id, content, index, size, color, moveTile, imageMapping, disable, randomBGFunction }) {
-  const { 
+  const {
     setCurrentPhoto,
     allNews,
-    city, 
-    Cel, setCel, 
+    city,
+    Cel, setCel,
     weather,
-    setNewsPopup,
     bgRotation, setBgRotation,
-    setTileScreen, handleShow 
+    setTileScreen, handleShow
   } = useContext(UseContext);
 
   const ref = useRef(null);
@@ -175,13 +171,6 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundSize: tileCooldown.current ? '26px' : '48px',
           backgroundRepeat: 'no-repeat',
         };
-      case 'About':
-        return {
-          backgroundImage: `url(${resumefiletile})`,
-          backgroundPosition: '50% 58%',
-          backgroundSize: '40px',
-          backgroundRepeat: 'no-repeat',
-        };
       case 'Project':
         return {
           backgroundImage: `url(${projecttile})`,
@@ -222,13 +211,6 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundImage: `url(${pencil})`,
           backgroundPosition: '50% 54%',
           backgroundSize: '36px',
-          backgroundRepeat: 'no-repeat',
-        };
-      case 'MineSweeper':
-        return {
-          backgroundImage: `url(${game})`,
-          backgroundPosition: '50% 59%',
-          backgroundSize: '46px',
           backgroundRepeat: 'no-repeat',
         };
       case 'Patch':
@@ -297,31 +279,10 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundSize: '54px',
           backgroundRepeat: 'no-repeat',
         };
-        case 'News':
-        // if(displayNewsTile.originalNews || filteredNews.length > 0) {
-        //   return;
-        // }
-        return {
-          backgroundImage: `url(${newsicon})`,
-          backgroundPosition: '50% 57%',
-          backgroundSize: '38px',
-          backgroundRepeat: 'no-repeat',
-        };
       default:
         return {};
     }
   }
-
-  // function mappingIconImage(content) {
-  //   const banned = [
-  //     'MSN', 'Picture', 'Settings', 
-  //     'Fortune', 'Nft', '3dObject', 
-  //     'AiAgent', 'Winamp', 'MyComputer',
-  //     'Mail', 'ResumeFile'
-  //   ];
-  //   if (banned.includes(content)) return;
-  //   return imageMapping(content);
-  // }
 
   function mappingIconName(content) {
     switch (content) {
@@ -361,12 +322,6 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           setCel(!Cel)
           return;
         }
-        setNewsPopup(true)
-        setTileScreen(false);
-        return;
-
-      case 'News':
-        setNewsPopup(true)
         setTileScreen(false);
         return;
 

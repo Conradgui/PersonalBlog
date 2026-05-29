@@ -1,9 +1,8 @@
 import MyComputer from '../../assets/pc.png'
-import About from '../../assets/ipng.png'
+import profileIcon from '../../assets/ipng.png'
 import Resume from '../../assets/folder.png'
 import Project from '../../assets/regFolder.png'
 import resumefile from '../../assets/resume.png'
-import MineSweeper from '../../assets/minesweepericon.png'
 import ie from '../../assets/ie.png'
 import settings from '../../assets/setting.png'
 import file from '../../assets/file4download.png'
@@ -27,7 +26,6 @@ import reset from '../../assets/reset.png'
 import github from '../../assets/github.png'
 import paint from '../../assets/paint.png'
 import aiagent from '../../assets/ai_robot.png'
-import cat from '../../assets/catpic.png'
 import patch from '../../assets/patch.png'
 import ThreedObject from '../../assets/3dObject.png'
 import Fortune from '../../assets/fortune.png'
@@ -36,7 +34,6 @@ import backarrow from '../../assets/backarrow.png'
 import tile from '../../assets/tile.png'
 import taskmanager from '../../assets/taskmanager.png'
 import notepad from '../../assets/notepad.png'
-import news from '../../assets/news.png'
 import layer from '../../assets/layer.png'
 
 
@@ -74,10 +71,6 @@ export function StyleHide(index, tap, ObjectState) {
 export function imageMapping (name, type) {
   switch(name) {
 
-    case 'About':
-    case 'about':
-      return About;
-
     case 'MyComputer':
     case 'My Computer':
       return MyComputer;
@@ -98,15 +91,8 @@ export function imageMapping (name, type) {
     case 'Note':
       return file;
 
-    case 'News':
-      return news;
-
     case 'ResumeFile':
       return resumefile;
-
-    case 'MineSweeper':
-    case 'Mine Sweeper':
-      return MineSweeper;
 
     case 'Internet':
     case 'WebResume':
@@ -150,10 +136,6 @@ export function imageMapping (name, type) {
     case "AiAgent":
       return aiagent;
 
-    case "Cat":
-    case "cat":
-      return cat;
-
     case "patch":
     case "Patch":
       return patch;
@@ -196,7 +178,7 @@ export function imageMapping (name, type) {
       return ie;
 
     case 'Profile':
-      return About; // 使用 About 图标
+      return profileIcon; // 使用 About 图标
 
     case 'ResumeWin':
       return Resume; // 使用 Resume 图标

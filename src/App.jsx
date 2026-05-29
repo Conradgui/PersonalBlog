@@ -2,13 +2,11 @@ import React, { useState, useEffect, useRef, } from 'react'
 import UserContext from './Context'
 import Footer from './components/Footer';
 import Dragdrop from './components/Dragdrop';
-import MyBioFolder from './components/MyBioFolder';
 import MyComputer from './components/MyComputer';
 import ResumeFolder from './components/ResumeFolder';
 import ProjectFolder from './components/ProjectFolder';
 import ResumeFile from './components/ResumeFile';
 import Shutdown from './components/Shutdown';
-import MineSweeper from './components/MineSweeper'
 import iconInfo from './icon.json'
 import Login from './components/Login';
 import OpenProject from './components/OpenProject';
@@ -21,7 +19,6 @@ import EmptyFolder from './components/EmptyFolder';
 import ErrorBtn from './components/ErrorBtn';
 import RightClickWindows from './components/RightClickWindows';
 import loadingSpin from './assets/loading.gif'
-import NewsApp from './components/NewsApp'
 import Patch from './components/Patch';
 import WindowsDragLogin from './components/WindowsDragLogin';
 import TaskManager from './components/TaskManager';
@@ -85,7 +82,6 @@ function App() {
   const [tileScreen, setTileScreen] = useState(false)
   const [chatBotActive, setChatBotActive] = useState(false);
   const [runCatVideo, setRunCatVideo] = useState(false)
-  const [newsPopup, setNewsPopup] = useState(false)
   const [sortedIcon, setSortedIcon] = useState([])
   const [sortIconTrigger, setSortIconTrigger] = useState(0)
   const [deleteIcon, setDeleteIcon] = useState(0)
@@ -164,14 +160,6 @@ function App() {
   const [tap, setTap] = useState([])
   const [lastTapTime, setLastTapTime] = useState(0)
   const [projectUrl, setProjectUrl] = useState('')
-  const [MybioExpand, setMybioExpand] = useState(
-  {
-    expand: false, // fullscreen
-    show: false, // show folder when double clicked
-    hide: false, // hide folder to the tap
-    focusItem: true, // decide if item is being clicked on or not
-    x: 0, y: 0, // position before fullscreen
-  });
   const [ResumeExpand, setResumeExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
@@ -179,15 +167,6 @@ function App() {
   {
     expand: false, show: false, hide: false, focusItem: true,  // focusItem is window, item_1focus - 5 is the icon
     x: 0, y: 0, zIndex: 1,});
-
-  const [NftExpand, setNftExpand] = useState(
-  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
-
-  const [NoteExpand, setNoteExpand] = useState(
-  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
-
-  const [TypeExpand, setTypeExpand] = useState(
-  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
   const [ResumeFileExpand, setResumeFileExpand] = useState(
   {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
@@ -207,7 +186,7 @@ function App() {
   const [desktopIcon, setDesktopIcon] = useState(() => {
   const localItems = localStorage.getItem('icons');
 
-  const deleteIcon = ['Cat', 'AiAgent', 'Paint', '3dObject', 'Nft', 'Note', 'ResumeFile', 'Github', 'WebResume', 'AiAgent', 'Fortune', 'PixelPic', 'IE', 'ResetStorage', 'Patch', 'TaskManager', 'Picture', 'Utility', 'Hard Disk (C:)', 'Hard Disk (D:)', 'CD-ROM', '001', '002', '003', '004', '005', '006', '007', '008', '009', '010', '011'];
+  const deleteIcon = ['Cat', 'AiAgent', 'Paint', '3dObject', 'Nft', 'Note', 'ResumeFile', 'Github', 'WebResume', 'AiAgent', 'Fortune', 'PixelPic', 'ResetStorage', 'Patch', 'TaskManager', 'Picture', 'Utility', 'Hard Disk (C:)', 'Hard Disk (D:)', 'CD-ROM', '001', '002', '003', '004', '005', '006', '007', '008', '009', '010', '011'];
 
   const filteredItems = iconInfo.filter(item => !deleteIcon.includes(item.name));
 
@@ -220,9 +199,6 @@ function App() {
   return filteredItems;
 });
 
-  const [MineSweeperExpand, setMineSweeperExpand] = useState(
-  {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
-
   const [BgSettingExpand, setBgSettingExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
@@ -232,9 +208,6 @@ function App() {
   const [BinExpand, setBinExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
 
-  const [PaintExpand, setPaintExpand] = useState(
-    {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
-  
   const [UtilityExpand, setUtilityExpand] = useState(
     {expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1,});
   
@@ -308,15 +281,18 @@ function App() {
   const allSetters = [setClippyThanks, setClippySendemail, setClippySong, setClippyUsername];
   const allClears = [ClearTOclippyThanksYouFunction, ClearTOclippySendemailfunction, ClearTOSongfunction, ClearTOclippyUsernameFunction];
 
-  useEffect(() => { // force user to update version by clearing their local storage!
+  useEffect(() => {
+    // Show loading animation briefly, then show desktop
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+
+    // Show Patch notes after loading
     setTimeout(() => {
       handleShow('Patch');
     }, 2500);
-    
-    if(!desktopIcon.find(icon => icon.name === 'IE')) {
-      localStorage.clear();
-      location.reload();
-    }
+
+    return () => clearTimeout(timer);
   },[])
 
 
@@ -760,9 +736,7 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     chatBotActive, setChatBotActive,
     PatchExpand, setPatchExpand,
     runCatVideo, setRunCatVideo,
-    newsPopup, setNewsPopup,
     UtilityRef,
-    PaintExpand, setPaintExpand,
     sortedIcon, setSortedIcon,
     sortIconTrigger, setSortIconTrigger,
     maxZindexRef,
@@ -815,7 +789,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     startActive, setStartActive,
     time, setTime,
     desktopIcon, setDesktopIcon,
-    MybioExpand, setMybioExpand,
     tap, setTap,
     imageMapping,
     lastTapTime, setLastTapTime,
@@ -824,9 +797,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     StyleHide,
     isTouchDevice, setIsTouchDevice,
     ProjectExpand, setProjectExpand,
-    NftExpand, setNftExpand,
-    NoteExpand, setNoteExpand,
-    TypeExpand, setTypeExpand,
     handleDoubleTapEnterMobile,
     handleDoubleClickEnterLink,
     handleDoubleClickiframe,
@@ -856,7 +826,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
     iconFocusIcon,
     deleteTap,
     shutdownWindow, setShutdownWindow,
-    MineSweeperExpand, setMineSweeperExpand,
     clippyUsername, setClippyUsername,
     ClearTOclippyUsernameFunction,
     login, setLogin,
@@ -969,13 +938,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
 
 
         <EmptyFolder
-          state={PaintExpand} 
-          setState={setPaintExpand}
-          folderName='Paint'
-          paintMode={true}
-        />
-
-        <EmptyFolder
           state={pictureExpand} 
           setState={setPictureExpand}
           refState={PictureRef}
@@ -1005,12 +967,10 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
         <AppIcons/>
         <TaskManager/>
         <Patch/>
-        <NewsApp/>
         <RightClickWindows/>
         <Notification/>
         <Shutdown/>
         <MyComputer/>
-        <MyBioFolder/>
         <BlogWindow/>
         <ProjectWindow/>
         <ProfileWindow/>
@@ -1018,7 +978,6 @@ function handleShowInfolderMobile(name, type) { //important handleshow for in fo
         <ResumeFolder/>
         <ProjectFolder/>
         <ResumeFile/>
-        <MineSweeper/>
         <OpenProject/>
         <BgSetting/>
         <Run/>
@@ -1227,20 +1186,16 @@ function handleDrop(e, name, target, oldFolderID) {
 
 function ObjectState() {
   return [
-   
-    { name: 'About',       setter: setMybioExpand,      usestate: MybioExpand,      color: 'rgba(46, 108, 176, 0.85)', size: 'small' },
+
     { name: 'Resume',      setter: setResumeExpand,     usestate: ResumeExpand,     color: 'rgba(65, 138, 68, 0.85)', size: 'small' },
     { name: 'Project',     setter: setProjectExpand,    usestate: ProjectExpand,    color: 'rgba(211, 117, 0, 0.85)', size: 'small' },
     { name: 'Picture',     setter: setPictureExpand,    usestate: pictureExpand,    color: 'rgba(85, 50, 148, 0.85)', size: 'large' },
-    { name: 'Nft',         setter: setNftExpand,        usestate: NftExpand,        color: 'rgba(142, 29, 126, 0.85)', size: 'small' },
-    { name: 'Note',        setter: setNoteExpand,       usestate: NoteExpand,       color: 'rgba(114, 81, 54, 0.85)', size: 'small' },
     { name: 'AiAgent',     setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(82, 117, 132, 0.85)', size: 'small' },
     { name: '3dObject',    setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'PixelPic',    setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'IE',          setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'Fortune',     setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(224, 88, 43, 0.85)', size: 'small' },
     { name: 'ResumeFile',  setter: setResumeFileExpand, usestate: ResumeFileExpand, color: 'rgba(133, 165, 67, 0.85)', size: 'small' },
-    { name: 'MineSweeper', setter: setMineSweeperExpand,usestate: MineSweeperExpand,color: 'rgba(187, 51, 48, 0.85)', size: 'small' },
     { name: 'Internet',    setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'Settings',    setter: setBgSettingExpand,  usestate: BgSettingExpand,  color: 'rgba(140, 140, 140, 0.85)', size: 'small' },
     { name: 'Run',         setter: setRunExpand,        usestate: RunExpand,        color: 'rgba(86, 114, 122, 0.85)', size: 'small' },
@@ -1248,23 +1203,21 @@ function ObjectState() {
     { name: 'Patch',       setter: setPatchExpand,      usestate: PatchExpand,      color: 'rgba(86, 114, 122, 0.85)', size: 'small' },
     { name: 'Photo',       setter: setPhotoOpenExpand,  usestate: photoOpenExpand,  color: 'rgba(0, 120, 93, 0.85)', size: 'small' },
     { name: 'RecycleBin',  setter: setBinExpand,        usestate: BinExpand,        color: 'rgba(64, 135, 66, 0.85)', size: 'small' },
-    { name: 'Paint',       setter: setPaintExpand,      usestate: PaintExpand,      color: 'rgba(193, 178, 46, 0.85)', size: 'small' },
     { name: 'Utility',     setter: setUtilityExpand,    usestate: UtilityExpand,    color: 'rgba(116, 85, 54, 0.85)', size: 'small' },
     { name: 'TaskManager', setter: setTaskManagerExpand,usestate: TaskManagerExpand,color: 'rgba(218, 160, 109, 0.85)', size: 'small' },
     { name: 'Bitcoin',     setter: setBtcShow,          usestate: btcShow,          color: 'rgba(132, 140, 207, 0.85)', size: 'small' },
-    { name: 'News',        setter: setOpenProjectExpand,usestate: openProjectExpand,color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
     { name: 'Blog',        setter: setBlogExpand,       usestate: BlogExpand,       color: 'rgba(46, 133, 64, 0.85)', size: 'small' },
     { name: 'Projects',    setter: setProjectsExpand,   usestate: ProjectsExpand,   color: 'rgba(211, 117, 0, 0.85)', size: 'small' },
     { name: 'Profile',     setter: setProfileExpand,    usestate: ProfileExpand,    color: 'rgba(100, 130, 180, 0.85)', size: 'small' },
     { name: 'ResumeWin',   setter: setResumeWinExpand,  usestate: ResumeWinExpand,  color: 'rgba(133, 165, 67, 0.85)', size: 'small' },
-    
+
     // Add user folders dynamically with individual state management
     ...UserCreatedFolder.map(folder => ({
       name: folder.name,
       setter: (newState) => {
         setUserCreatedFolder(prev => {
-          const updated = prev.map(f => 
-            f.id === folder.id 
+          const updated = prev.map(f =>
+            f.id === folder.id
               ? { ...f, ...newState }
               : f
           );

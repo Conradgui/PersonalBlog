@@ -18,7 +18,6 @@ import Calendar from 'react-calendar';
 import { BsFillCaretRightFill } from "react-icons/bs";
 import binEmp from '../assets/bin2.png'
 import bin from '../assets/bin.png'
-import news from '../assets/news.png'
 
 
 export default function Footer() {
@@ -40,7 +39,6 @@ export default function Footer() {
         appIconToggle, setAppIconToggle,
         deleteTap,
         tileScreen, setTileScreen,
-        newsPopup, setNewsPopup,
         btcShow, setBtcShow,
         isTouchDevice,
         desktopIcon,
@@ -303,15 +301,17 @@ export default function Footer() {
 
     const getCurrentLocalTime12Hour = () => {
         const now = new Date();
-        let hours = now.getHours();
-        let minutes = now.getMinutes();
+        // 转换为北京时间 (UTC+8)
+        const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+        const beijingTime = new Date(utc + (8 * 3600000));
+        let hours = beijingTime.getHours();
+        let minutes = beijingTime.getMinutes();
         let meridiem = hours < 12 ? 'AM' : 'PM';
         hours = hours % 12;
         hours = hours ? hours : 12;
         hours = (hours < 10 ? '0' : '') + hours;
         minutes = (minutes < 10 ? '0' : '') + minutes;
-        let currentTime12Hour = hours + ':' + minutes + ' ' + meridiem;
-        setTime(currentTime12Hour);
+        setTime(hours + ':' + minutes + ' ' + meridiem);
     };
 
     function handleHideFolder(index) { // unhide icon from tap
@@ -486,12 +486,6 @@ export default function Footer() {
                     ref={timeBarRef}
                 >
                     <div className="icon_time_container">
-                        <img src={news} alt="news"
-                                onClick={(e) => {
-                                    e.stopPropagation()
-                                    setNewsPopup(!newsPopup)
-                                }}
-                        />
                         {isBitcoinInstalled && (
                             <img src={btc_icon} alt="btc_icon"
     
